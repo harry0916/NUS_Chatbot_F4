@@ -8,3 +8,4 @@ Flask==1.0.2
 Flask_Assistant==0.3.91
 fuzzywuzzy==0.17.0
 scikit_learn==0.21.3
+json>=2.0.9
