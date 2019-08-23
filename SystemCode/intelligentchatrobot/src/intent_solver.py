@@ -284,8 +284,9 @@ class QueryFactory:
                                                          textToSpeech="Check out these activities:",
                                                          item_titles=list(self.lexicon.activities.keys()),
                                                          item_descs=[info.get("content") for info in self.lexicon.activities.values()],
-                                                         item_img_urls=[info.get("url") for info in self.lexicon.activities.values()],
-                                                         item_img_titles=list(self.lexicon.activities.keys())
+                                                         item_img_urls=[info.get("img") for info in self.lexicon.activities.values()],
+                                                         item_img_titles=list(self.lexicon.activities.keys()),
+                                                         item_urls=[info.get("url") for info in self.lexicon.activities.values()]
                                                          )
         else:
             return ""
