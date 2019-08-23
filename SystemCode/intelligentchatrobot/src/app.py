@@ -36,7 +36,7 @@ def navigate():
 def nightsafariIntentSolver():
     query.order(req['queryResult']['parameters'])
     t = query.parse()
-    if t.strip() == '':
+    if isinstance(t, str) and t.strip() == '':
         t = nlp.response(req['queryResult']['queryText']).split('\n')
         print('mwzoutput:',t)
         if len(t) > 1:

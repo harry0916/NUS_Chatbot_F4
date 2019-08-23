@@ -1,0 +1,760 @@
+{
+  "Night Safari": {
+    "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/social-grid/large/NS Entrance.jpg",
+    "url":"https://www.wrs.com.sg/en/night-safari.html",
+    "description": "Night Safari, the world’s first nocturnal wildlife park, is a 13-time winner of the Best Attraction category awarded by Singapore Tourism Board. This internationally acclaimed leisure attraction embodies innovation and creativity in products and services, and service quality, thus attracting approximately 1.3 million visitors annually. Close to 900 animals from approximately 100 species (of which almost 41 per cent are threatened) inhabit the 35-hectare park. In line with its mission to promote biodiversity, the park focuses on the captive breeding of threatened species. Over the years, it has bred Malayan tigers, Asian elephants, fishing cats, red dholes, anoas, markhors, bantengs, Malayan tapirs and Asian lions, among other threatened species.",
+    "time": {
+      "Opening Hours": "7.15pm",
+      "Closing Hours": "12.00pm",
+      "Admission time slots": "7.15pm, 8.15pm, 9.15pm, 10.15pm",
+      "Last entry": "11.15pm"
+    },
+    "ticket": {
+    	"url":"https://www.wrs.com.sg/en/night-safari/plan-your-visit.html",
+      "book": "https://www.wrs.com.sg/en/ticketing/admission-and-rides/parks-selection.html",
+      "Admission ticket prices": {
+        "Adult": 55,
+        "Child": 39,
+        "Child below 3": 0
+      },
+      "Online discount": "10%",
+      "tips": "Senior residents price is $21, on that, residents enjoy 5% offline discount"
+    },
+    "Friends of Night Safari": {
+      "info": "Join the nocturnal family! Become a Friends of Night Safari member to enjoy one-year unlimited admission, complimentary tram rides and other exclusive privileges. You’ll enjoy a wide range of discounts on F&B, retail, tours and more!",
+      "url": "https://www.wrs.com.sg/en/night-safari/memberships/friends-of-night-safari.html"
+    },
+    "Admission rates": {
+    	"url":"https://www.wrs.com.sg/en/night-safari/learning-with-us/prepare-your-visit.html",
+      "info": "Night Safari is (quite literally) a Living Classroom where learning about animals, plants and wildlife conservation comes to life! It is a living dimension to add to your curriculum so your students can encounter real sights, sounds and smells. So, read on to discover how to plan a meaningful educational trip for your students to Night Safari.  Check out our programmes;Preparing for a self-guided trip;Make your visit smoother;Plan a recce trip;Prepare your students on the topic.",
+      "price": {
+        "Primary": 14,
+        "child": 0,
+        "secondary": 26,
+        "Universities": 26,
+        "teacher": "For every 10 paying students, 1 adult gets complimentary admission. Additional adults in the group wil have to pay admission fee (school rates).",
+        "parent": "For every 10 paying students, 1 adult gets complimentary admission. Additional adults in the group wil have to pay admission fee (school rates)."
+      },
+      "bring": "Water bottle, Insect repellent, Poncho/raincoat, Pen and notebook"
+    },
+    "Position": {
+      "ticketing counter": "main entrance of the Singapore Zoo",
+      "ATM": "we have a POSB ATM machine at Singapore Zoo's main entrance, next to the Mandai Mart convenience store.",
+      "Automated External Defibrillators": "at the main entrance and the East Lodge.",
+      "AEDs": "at the main entrance and the East Lodge."
+    },
+    "events": [
+      {
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/singapore-zoo/circle-of-life-festival/Whats%20On_900x600.jpg",
+        "name": "Circle of Life Festival at Dusk",
+        "date": "1 JUN – 12 AUG (WEEKENDS AND PH ONLY)",
+        "time": "7.45PM",
+        "position": "Entrance Courtyard",
+        "content": "The festival continues to Night Safari as drummers liven up the mood followed by Night Safari’s Thumbuakar performers twirling fire to the beat of the drums.",
+        "tips": "In the event of wet weather, the performance will be at the sheltered walkway at Entrance Plaza."
+      },
+      {
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/singapore-zoo/circle-of-life-festival/Campaign%20Website_1670x1250_NEW_KingsofthePast.jpg",
+        "name": "The Great Kings of the Past Insta-worthy Photo Point",
+        "date": "1 JUN - 31 AUG",
+        "position": "NARACOORTE CAVE",
+        "content": "Relax on the grass and be mesmerised by the stars above you.",
+        "tips": ""
+      },
+      {
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/singapore-zoo/circle-of-life-festival/TLK_Thumbnails_HyenaFeeding.jpg",
+        "name": "Hyena priceding and Keepers' Talk",
+        "date": "1 JUN – 31 AUG (WEEKENDS AND EVE OF PH ONLY)",
+        "time": "8.30PM",
+        "position": "SPOTTED HYENA EXHIBIT",
+        "content": "Why are Hyenas always laughing? Hear our keepers share interesting stories and dispel misconception around Hyena’s bad reputation while watching them chow down during the priceding session.",
+        "tips": ""
+      },
+      {
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/singapore-zoo/circle-of-life-festival/TLK_Thumbnails_LionFeeding.jpg",
+        "name": "A Wild Feast: Lion priceding",
+        "date": "1 JUN – 31 AUG (WEEKENDS AND EVE OF PH ONLY)",
+        "time": "8PM & 9PM",
+        "position": "LION LOOKOUT",
+        "content": "Witness our Asiatic lions at their most active time – priceding! Come and get acquainted with these magnificent big cats and learn more about them through the priceding session.",
+        "tips": ""
+      }
+    ],
+    "activities": [
+      {
+      	"url":"https://www.wrs.com.sg/en/night-safari/things-to-do/activities/tours.html?intcmp=epc%7Ci1%7CWildlife+Tours%7Cpri%7CFind+out+more%7Cnight-safari%3Athings-to-do%3Aactivities",
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/activity/safari-adventurer-tour.jpg",
+        "name": "Keepers' Chit-Chat",
+        "content": "Learn more about our wildlife from the people who know best – the keepers. In this interactive session, hear interesting quirks of the animals from our keepers.",
+        "chit-chat animal": {
+          "lion": {
+            "time": "8.00PM AND 9.00PM FRIDAY, SATURDAY AND EVE OF PUBLIC HOLIDAYS",
+            "position": "LION LOOKOUT ALONG LEOPARD TRAIL"
+          },
+          "tiger": {
+            "time": "8.30PM AND 9.30PM FRIDAY, SATURDAY AND EVE OF PUBLIC HOLIDAYS",
+            "position": "MALAYAN TIGER EXHIBIT ALONG EAST LODGE TRAIL"
+          },
+          "pangolin": {
+            "time": "8.30PM DAILY",
+            "position": "PANGOLIN EXHIBIT ALONG FISHING CAT TRAIL"
+          },
+          "wallaby": {
+            "time": "9.00PM DAILY",
+            "position": "WALLABY EXHIBIT ALONG WALLABY TRAIL"
+          }
+        }
+      },
+      {
+      	"url":"https://www.wrs.com.sg/en/night-safari/things-to-do/activities/keepers-chit-chat.html?intcmp=epc%7Ci2%7CKeepers%27+Chit-Chat%7Cpri%7CFind+out+more%7Cnight-safari%3Athings-to-do%3Aactivities",
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/activity/lion-tiger-token-feed.jpg",
+        "name": "Safari Adventure Tour",
+        "time": "7.15PM to 9.15PM",
+        "content": "We picked out the best just for you! Hop on to the discovery buggy and let your safari guide show you the best kept secrets of Night Safari through a private buggy ride and on the very exciting Leopard Trail. Find out more from our keepers about the gentle giants in an exclusive Asian elephant priceding session!",
+        "tips": "Max 7 people",
+        "price": {
+          "Adult public": 138,
+          "Child public": 85,
+          "Adult member": 110.4,
+          "Child member": 68,
+          "discount": "Family & Individual members enjoy a 20% discount"
+        }
+      },
+      {
+      	"url":"https://www.wrs.com.sg/en/night-safari/plan-your-visit/getting-around-night-safari.html",
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/tramride/tram-ride-ns.jpg",
+        "name": "Guided Tram Ride",
+        "time": "About 40mins/round",
+        "content": "Explore the park in the comfort of our tram car, complete with audio commentary in English on our animals and zones! Guests in wheelchairs are welcome, as some of our trams have special slots for wheelchairs.",
+        "price": 0,
+        "language": "English"
+      },
+      {
+      	"url":"https://www.wrs.com.sg/en/night-safari/plan-your-visit/getting-around-night-safari.html",
+      	"img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/tramride/night-safari-multi-language-tram.jpg",
+        "name": "Multi-Language Express Tram",
+        "content": "Beat the queue and hop on our express tram with commentary available in 8 languages: English, Bahasa Indonesia, Hindi, Japanese, Korean, Mandarin, Thai and Vietnamese.",
+        "language": [
+          "English",
+          "Bahasa Indonesia",
+          "Japanese",
+          "Korean",
+          "Mandarin",
+          "Thai",
+          "Vietnamese"
+        ],
+        "price": 10,
+        "discount": "Family & Individual members enjoy a 20% discount"
+      }
+    ],
+    "animals": [
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/elephant-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/asian-elephant.html",
+        "name":"Asian elephant",
+        "lifespan":"60 to 70 years",
+        "diet":"Mainly browse and grass",
+        "Habitat":"Grassland and forest",
+        "Range":"Fragmented populations",
+        "info":[
+          {
+            "name":"Eating all day",
+            "content":"Elephants in the wild can spend up to 19 hours a day feasting on a variety of plants. In southern India, elephants were observed to eat up to 82 different plant types.Each of our elephants get around 150 kg of grass and leaves a day, in 20kg 'bite-sized' chunks every hour. Watch out for the cheeky antics of Tun - she is known to 'steal' food from even the matriarch of the herd, Jamilah"
+          },
+          {
+            "name":"Trick or treat",
+            "content":"While browse makes up the bulk of their diet, our elephants also enjoy the occasional fruit such as bananas, apples, watermelons, mangosteens. Sugarcane, tamarind and carrots are also given, but only as treats.Look out for the new app-controlled feeding boxes in Chawang's exhibit, marking our move towards activity-based exhibits. At the tap of a phone, the boxes release a 'rain' of peanuts and pellets. The random timings never fail to catch our 40-year-old bull by surprise"
+          },
+          {
+            "name":"Tusk, tusk",
+            "content":"Tusks are modified incisors of an elephant. Only male elephants have tusks, unlike the African elephants where both males and females have tusks. Elephants use tusks to strip tree bark and to dig for water and salt. They're also valued as ivory in the illegal wildlife trade. Since 2013, eight tonnes of ivory have been seized at Singaporean ports. It's time we take poachers to task. Say no to ivory"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/asiatic-lion-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/asian-lion.html",
+        "name":"Asian lion",
+        "lifespan":"Females live 17-18",
+        "diet":"Deer, cattle,",
+        "Habitat":"Dry deciduous forest,",
+        "Range":"Gujarat, India",
+        "info":[
+          {
+            "name":"Asian vs African",
+            "content":"The Asian lion is thought to had split from the African lion some 100,000 years ago. They are genetically distinct, though their genetic distance is smaller than that between human racial groups. Asian lions are slightly smaller than African lions. With a comparatively shorter, sparser and darker mane, the male Asian lion's ears are exposed and visible at all times. The Asian lion also sports thicker elbow and tail tufts and a longitudinal skin fold along the stomach"
+          },
+          {
+            "name":"Man - their biggest threat",
+            "content":"Asian lions used to range from Turkey, across Asia, to eastern India, but the rise of firearm use globally led to their near-extirpation at the hands of trophy hunters.Today, these lions have to contend with a growing human population that rears livestock and grows crops in their range. There have been cases of lions drowning after falling into wells.Poaching incidents in recent years also indicate that organised gangs may now be targeting these lions instead of the tigers"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/clouded-leopard-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/clouded-leopard.html",
+        "name":"Clouded leopard",
+        "lifespan":"11 years ",
+        "diet":"Both arboreal and terrestrial prey",
+        "Habitat":"Primary tropical forest",
+        "Range":"From the rainforests of Indonesia",
+        "info":[
+
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/common-palm-civet-720x720px.jpg",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/common-palm-civet.html",
+        "name":"Common palm civet",
+        "lifespan":"15 - 22 years ",
+        "diet":"Rats, birds, insects",
+        "Habitat":"Forests",
+        "Range":"South and Southeast Asia",
+        "info":[
+          {
+            "name":"Singapore toddy cat",
+            "content":"Bearing the face of a raccoon, the ears of a cat and the tail of a monkey, this species is also called the toddy cat for its apparent fondness for fermented palm fruit, which is used to make palm wine or toddy. In the Malay language, it is known as 'musang' (meaning 'weasel') but it is neither weasel nor cat. Like other members of the civet family, it has a pair of stink glands near the base of its tail from which it secretes a foul-smelling liquid when threatened"
+          },
+          {
+            "name":"Civet-processed coffee ",
+            "content":"Kopi Luwak is an expensive gourmet coffee made from the beans of coffee berries that have been eaten and passed out by palm civets. The undigested beans excreted by the civets are collected, washed and made into the coveted coffee. A single cup of Kopi Luwak may cost as much as $50! Unfortunately, growing demand has resulted in cruel practices on civet coffee farms. The civets are housed in crammed cages and fed nothing but coffee beans. Please say no to Kopi Luwak"
+          },
+          {
+            "name":"Musang magnet",
+            "content":"Adapted for forest living but tolerant of human presence, this species is often found in areas near people. The Siglap and Opera Estate area in Singapore is a 'musang magnet', probably due to the large number of fruit trees planted by residents in the largely private residential areas. The civets have been sighted at dawn, dusk and the wee hours of the morning; walking across power cables, trampling across rooftops and even making their way into residents' attics"
+          },
+          {
+            "name":"Trapped!",
+            "content":"Irate residents who have caught the civets feasting off their fruit trees consider these 'masked bandits' a nuisance. Some have resorted to trapping them. Trapped civets may sustain serious injuries while trying to escape, or end up trapped for days before they are handed over to the local authorities and sent to our Wildlife Healthcare and Research Centre (WHRC), Singapore's official Rescued Wildlife Centre"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/fishing-cat-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/fishing-cat.html",
+        "name":"Fishing cat",
+        "lifespan":"10 to 12 years ",
+        "diet":"Fish",
+        "Habitat":"Within 15km ",
+        "Range":"From India to South China ",
+        "info":[
+          {
+            "name":"Stealthy hunters",
+            "content":"Fishing cats are known to spend long periods of time stalking fish by the water's edge. To hasten the process, they may lightly paw the water surface to imitate insect movements. Fish hoping to make a meal of an insect end up as a meal for the cats when they swim too close. Plunging into the water with lightning speed, the cats expertly grab their slippery prey with their partially-webbed paws. They have also been observed to seize ducks by swimming underwater"
+          },
+          {
+            "name":"Spots and stripes",
+            "content":"The fishing cat's olive-grey coat is marked by distinct patterns. Six to eight black lines run from the forehead to the neck, breaking up into shorter lines and spots on the shoulders. Markings above the eyes are vertical while those emerging from the edges of the eyes are horizontal.Our pair of fishing cat sisters look very similar but you can tell them apart by zooming in on the whiskered parts of their cheeks. Latika has a striped pattern while Lalita has spots"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/leopard-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/leopard.html",
+        "name":"Leopard",
+        "lifespan":"10-12 years in the wild",
+        "diet":"Mid-sized ungulates,",
+        "Habitat":"Mountains to grasslands,",
+        "Range":"Africa to Middle East,",
+        "info":[
+          {
+            "name":"Keeping our leopards lively",
+            "content":"Kirinda, one of our Sri Lankan leopards, is having a go at a bone tied to a dynamic log in her back-of house enclosure. Enrichment activities like these keep our leopards sharp of mind and claw, while strengthening their muscles. Our leopards also love spending time by their water tub, where they are kept entertained by colourful floating balls that they cannot resist batting with their paws. Their keepers are always thinking up ideas like these to ensure the big cats are stimulated mentally and physically"
+          },
+          {
+            "name":"Stocking up",
+            "content":"The leopard has the practice of heaving its kill up into the limbs of a tree for undisturbed feeding. Assisted by powerful limb,neck and jaw muscles, it can easily drag a carcass that weighs more than itself! Leopards are known to cache food in trees or under thick vegetation and will not stop hunting despite having multiple carcasses stowed away. This is especially so where competitors like hyenas or lions are present and more commonly seen in males than females"
+          },
+          {
+            "name":"Blending in",
+            "content":"Their coat colour ranges from tawny in warm, dry habitats to reddish-orange, even black in dense forests. Leopards with a black coat are commonly referred to as `black panthers'. Like other leopards, they have a spotted coat although their distinctive black rosette markings are much less visible on a black coat. Leopards in East Africa sport circular rosettes while those in South Africa have squarish ones. Cubs are ash-grey with indistinct rosettes. Solid black spots cover a leopard's chest, feet, and face. Each leopard has a unique coat pattern"
+          },
+          {
+            "name":"Vulnerable survivors ",
+            "content":"In the face of changing land-use, decreasing prey and human persecution, the leopard has persisted where other large predators have not. Found wherever there is food and cover, it quenches its thirst with moisture from ingested prey. Not a fussy eater, it tolerates human presence well. Keen of sight and hearing, the leopard is comfortable both in water and on trees. Yet, it is not invulnerable. In parts of its range, populations have plummeted by 80% or more"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/malayan-tapir-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/malayan-tapir.html",
+        "name":"Malayan Tapir",
+        "lifespan":"25-30 years in the wild",
+        "diet":"Leaves, buds, growing twigs, bark, herbs,",
+        "Habitat":"Rainforests and lower montane forests.",
+        "Range":"From southern Thailand and southern Myanmar",
+        "info":[
+          {
+            "name":"Tapir spotting",
+            "content":"The Malayan tapir has a dramatic coat pattern, often referred to as the \"saddle\" pattern because of its position and shape. The front half of their body and hind legs are black, while the sides are white. This breaks up its outline and creates an illusive vision of a boulder.Which is why guests are always amazed by the appearance of a tapir on the tram route. You don't see them until they're right by the tram, sometimes an arm's length from where you're seate"
+          },
+          {
+            "name":"Calf survival",
+            "content":"Newborn calves are even more elusive than adults. Their coat is streaked with white spots and stripes, keeping them well-camouflaged on the sun-dappled forest floor. It's their only chance against predators like tigers or leopards, till they're strong enough to keep up with Mum on her foraging trips. Calves start on solids at two weeks and can swim when three weeks old. By this time, they're following their mothers everywhere - resting, investigating and swimming together"
+          },
+          {
+            "name":"Agile tapirs",
+            "content":"Tapirs are fast and agile swimmers. You might see our tapirs taking a dip in the pond in their exhibit, to cool off or wash away skin parasites.Tapirs are known to walk along riverbeds, holding their breath for up to 90 seconds. Alternatively, they use their trunk as a snorkel!The trunk also works like a hand to bring food to the mouth and to probe unfamiliar objects"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/zones/featured-contents/Fishing-Cat-Trail/malayan-flying-fox-1x1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/malayan-flying-fox.html",
+        "name":"Malayan flying fox",
+        "lifespan":"15 years in the wild, ",
+        "diet":"Pollen, nectar, ",
+        "Habitat":"Tropical primary ",
+        "Range":"Across much of continental ",
+        "info":[
+          {
+            "name":"Big but harmless",
+            "content":"With a wingspan of 1.5-1.7m, these are the largest bats in the world. At the Leopard Trail Mangrove Walk, feel the breeze as they flap past you, sometimes missing you by inches. There's no cause for alarm - these frugivorous bats mean no harm. They're just probably in a hurry to get to their supper. Landing on the tips of the branches decked out with juicy fruit by the keepers, they quickly fall into an upside-down position to feed, hanging on by the claws on their toes"
+          },
+          {
+            "name":"Toeing the line ",
+            "content":"Their toe claws provide such a powerful grip they can hang on with one foot while feeding with the other! Slicing the rind with their teeth, they extract the fruit with their long tongue, which is also used to lap up the juices.The thumb claw is used as a hook to help them move along branches. Males also use it to set-tle turf wars. Highly territorial by nature, they communicate ownership by spreading their wings, growling, or making hostile noises"
+          },
+          {
+            "name":"Work at dusk",
+            "content":"When night falls, the flying foxes leave their daytime roost to feed. their keen vision and sense of smell helps them locate fruit and flowers easily. They can eat up to half their body weight in fruit on a daily basis. When sated, they right themselves before doing a \"free-fall\" take off. They also turn the right side up to defecate. Orchard owners regard them as pests and but a bit of fruit is a small wage to pay for the help they render in pollination and seed dispersal"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/malayan-tiger-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/malayan-tiger.html",
+        "name":"Malayan tiger",
+        "lifespan":"8 to 10 years in the wild",
+        "diet":"Mainly hoofed animals",
+        "Habitat":"Forest",
+        "Range":"Peninsular Malaysia",
+        "info":[
+          {
+            "name":"When hunters become the hunted",
+            "content":"Tigers are at the apex of the food chain. These solitary hunters can handle animal prey up to a ton in weight . A healthy adult has the strength of 30 men! Sadly, man has turned the tables on them. Mercilessly poached to satisfy the insatiable demand for tiger parts, wild tigers are being hunted to extinction. In 2012 alone, tiger parts from at least 22 tigers were seized in Kedah. NGOs continue to report snares and illegal camp sites, even in protected areas"
+          },
+          {
+            "name":"Tigers in Singapore",
+            "content":"The Malayan tiger used to roam the forests of Singapore in bygone era. When their habitats were converted to plantations around 1825, human-tiger encounters escalated. In 1850, tigers were reported to be claiming human lives daily - improbable given the low tiger numbers to start with. Seen as vermin, tigers were shot on sight. Shooters were rewarded with money. By the 1870s, tigers were all but gone. The last tiger in Singapore was shot in 1930 in Choa Chu Kang"
+          },
+          {
+            "name":"MYCAT",
+            "content":"Fewer than 300 Malayan tigers are left in the wild. Besides illegal poaching, habitat loss and human-tiger conflicts compound the problem. To involve and educate members of the public, the Malaysian Conservation Alliance for Tigers (MYCAT) launched the Citizen Action for Tigers (CAT) Walk.CAT Walk-ers assist forest rangers in regular anti-poaching patrols of the Sungai Yu River Wildlife Corridor. Sungai Yu connects Taman Negara National Park and the Titiwangsa Mountains, two of the largest tiger habitats in Malaysia. With WRS's support, 68 CAT Walks covering 421km have been conducted"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/nile-hippo-1X1.jpg",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/nile-hippo.html",
+        "name":"Nile Hippo",
+        "lifespan":"Up to 40 years ",
+        "diet":"Grass",
+        "Habitat":"Estuaries ",
+        "Range":"Eastern central",
+        "info":[
+          {
+            "name":"Water dwellers by day",
+            "content":"You will be able to spot these heavyweights of Equatorial Africa just before the tram crosses into the Asian Riverine Forest. They're way bigger than our family of pygmy hippos at Singapore Zoo. To keep their massive bodies cool in the blistering African heat, hippos can spend up to 16 hours a day submerged in water. They consume few, if any, aquatic plants, and are absolutely dependent on vegetation surrounding permanent water bodies. At sundown, they leave the water, travelling overland along single-file pathways to forage for food"
+          },
+          {
+            "name":"Land feeders by night",
+            "content":"Nighttime feeding takes place over 5-6 hours, usually within a close range of 1-3 km to their home watercourse. Coarse, tufty grass is passed over for short, creeping grass species that can be grasped with their lips and torn off a side-to-side head movement. In this way, \"hippo lawns\" are created by continued grazing. If threatened on land, hippos will make a dash back to the water. At a speed of 30km/hr, they can match a human's speed for short distance"
+          },
+          {
+            "name":"Toothy yawn",
+            "content":"The hippo's canines and incisors grow continuously. The long lower canines are kept sharp through constant vertical wear against the shorter upper canines and used for fighting. These tusk-like teeth can grow to 50 cm in males - twice the length of the females'. Their jaws are hinged far to the back, allowing for an enormous gape of 150°, compared to only 45° in humans. The yawn is a threat display to establish dominance. It is also used by males to attract females"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/pangolin-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/sunda-pangolin.html",
+        "name":"Pangolin",
+        "lifespan":"7 years in the wild",
+        "diet":"Ants and termites",
+        "Habitat":"Primary and secondary forest",
+        "Range":"Southeast Asia",
+        "info":[
+          {
+            "name":"Finicky eaters",
+            "content":"Due to their specialised diet of ants and termites, pangolins are notoriously difficult to care for. At first, our keepers tried to emulate the anteater diet - a porridge made from fruits, meat and mealworms. As pangolins have no teeth, the tendons had to be removed from the meat before it was blended. Later, ground-up termite mounds were added. Most recently, the keepers have substituted the meat with ant eggs. Our pangolins are positively lapping this up"
+          },
+          {
+            "name":"Healthy poop, healthy pangolin",
+            "content":"One of the first things our pangolin keepers look out for in the morning is the poop. Healthy pangolins produce poop that is blackish and tubular. 8 out of our 10 pangolins have the bizarre habit of pooping in their water dishes, so extra dishes are provided for them. Panjang, who was named for his long tail ('panjang' means 'long' in Malay), is one of them. Unfortunately, he sometimes misses the dish target due to the length of his tail"
+          },
+          {
+            "name":"Surprise, surprise",
+            "content":"This strange business might have to do with the fact that the pangolin is a confident swimmer. Not only does it swim well, it can scoot up a tree with surprising speed. Its prehensile tail works like a fifth limb. The bottom tip of the tail is naked and helps it maintain its grip around branches and tree trunks. Which is why our keepers are ever-watchful when taking them out on walks. If they decide to scale a tree, it would be tough trying to get them to come down"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/giant-flying-squirrel-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/red-and-white-giant-flying-squirrel.html",
+        "name":"Red and white giant flying squirrel",
+        "lifespan":"Up to 21 years ",
+        "diet":"Acorns",
+        "Habitat":"Dense montane forest",
+        "Range":"Central and southern China",
+        "info":[
+          {
+            "name":"Impressive gliders",
+            "content":"The flying squirrel can glide across the length of five football fields. When gliding, it stretches its limbs to spread out its gliding membrane, a skin flap that extends from wrist to ankle and contains sheets of muscles. To control glide direction and speed, the flying squirrel tenses and relaxes muscles in the membrane. When not in use, the skin flap can be quite cumbersome and is 'worn' like a cloak. The squirrel's long, bushy tail works like a rudder for steering"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/sloth-bear-720x720.jpg",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/sloth-bear.html",
+        "name":"Sloth bear",
+        "lifespan":"Up to 40 years under human care",
+        "diet":"Insects like ants and termites,",
+        "Habitat":"Wet and dry tropical forests,",
+        "Range":"India, Bangladesh, Sri Lanka,",
+        "info":[
+          {
+            "name":"Bears of the night",
+            "content":"Sloth bears are mainly nocturnal and have a keen sense of smell. Their sight and hearing are poor, allowing humans to come very near to them. This has led to numerous cases of fatal bear attacks. Though shy, they will defend themselves when they feel threatened. In the day, they sleep in caves, especially caves by river banks. They do not hibernate, but are inactive for a period of time during the rainy season. Despite living in the tropics, they possess long, shaggy coats"
+          },
+          {
+            "name":"Noisy, nimble bears",
+            "content":"The sloth bears use their sickle-shaped claws as 'climbing hooks' to hoist themselves up trees. They climb not to escape danger, but to get at termite or bee nests. Inserting their long snouts into the nests, they rip them open with their claws. They can voluntarily open and close their nostrils to prevent inhaling dust. They then blow away the earth and suck the termites into their mouths, with much noisy puffings and belchings"
+          },
+          {
+            "name":"Dancing bears no more",
+            "content":"Early explorers observed that sloth bears hung upside down in trees and they were once thought to be related to the three-toed sloth. Widely sought after for their acrobatic skills, sloth bears were captured and trained to perform circus acts. Cubs are poached, often after the killing of the mother bear, for use as street-show 'dancing bears'. The cubs are coerced into submission and trained through constant infliction of pain, which may involve standing on hot metal plates and beatings with a stick. The practice of using bears as roadside performers has been banned in India since 1972 and has tapered off after 2009 but persists on a smaller scale in Nepal"
+          },
+          {
+            "name":"Unbearable cruelty",
+            "content":"To prevent injury to its owner, a captured cub may have its canines pulled and its claws removed. Its sensitive muzzle is pierced and a hot iron rod is inserted, without anaesthesia. A rope is passed through this hole and the bear is taught to respond to every tug of the rope. A ban on dancing bear performances means loss of income for the people that depend on the practice for a living. We can help by supporting conservation projects involved in the rescue of bears from this cruel practice and the creation of alternative livelihoods in the communities affected.Image credit: Wikimedia Commons/ Rhealopez1"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/slow-loris-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/javan-slow-loris.html",
+        "name":"Slow loris",
+        "lifespan":"20 years on average in the wild",
+        "diet":"Insects and tree gum",
+        "Habitat":"Rainforests",
+        "Range":"Banten, West Java",
+        "info":[
+          {
+            "name":"Venomous primate",
+            "content":"Only a few mammals are known to produce venom and the slow loris is one of them. It mixes the secretion from a gland on the underside of its arm with its saliva to produce a toxin. It applies the toxin on its body when provoked, or to protect itself or its young from predators such as clouded leopards, binturongs and palm civets. A toothcomb on its lower jaw helps transfer the toxin. Toothcombs are comb-shaped incisors used to detangle fur and to get rid of debris trapped within. On its second toe is a toilet claw that provides additional help in grooming. Urine is used to scent mark territory and to communicate with other lorises"
+          },
+          {
+            "name":"Slow, flexible tree dweller",
+            "content":"Known for its slow and deliberate gait, the slow loris is surprisingly swift when striking at prey that is within reach. The grip of its hind feet is so strong and its backbone so flexible that it can twist around extensively, above and below branches, even hang upside down while using its hands to forage or to capture prey. A truly arboreal primate, it is almost never seen out of the treetops.The dark patches around its eyes remind one of a clown, hence its name 'loris', which means clown in Dutch"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/asian-small-clawed-otter-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/small-clawed-otter.html",
+        "name":"Small-clawed otter",
+        "lifespan":"Up to 16 years",
+        "diet":"Crustaceans and",
+        "Habitat":"Freshwater swamps,",
+        "Range":"From India through",
+        "info":[
+          {
+            "name":"You 'otter' be here!",
+            "content":"Our otters' two-tiered exhibit is spread across an outdoor upper deck and an indoor viewing gallery. The terrain of the top tier is rocky - they build their dens and nest chambers beneath the boulders. Here, you'll see them doing their laps in the stream, engaged in a game of tag or playing 'juggle-the-pebble'. To view their underwater acrobatics, follow the footpath to the lower exhibit. Zoom in on their tiny ears and nostrils - the otters can close them while they swim"
+          },
+          {
+            "name":"Layering for warmth",
+            "content":"At the underwater viewing gallery, you'd probably get close enough to note the otters' thick fur coat. What you see is their outer layer of long guard hairs, coated with oil to repel water. Only this layer gets wet when the otters take a dive. A layer of fine, tightly-packed underfur stays dry. Air pockets within their coat keep the otters insulated while they swim. It's important to regularly reintroduce air into their coats, which is why you'd often see them grooming themselves"
+          },
+          {
+            "name":"Nimble paws and action",
+            "content":"True to their name, these otters' claws do not grow past their digital pads. They have partially webbed paws, which means they're far more dexterous than otters with fully-webbed ones. Using their forepaws rather than their mouth, they dig for shellfish like clams, mussels and their favourite crabs on the sandy shoreline. Their sharp teeth are well-adapted to the task of crushing shells. Alternatively, they bring catch like clams on land, leaving them to open in the sun"
+          },
+          {
+            "name":"Passing on information",
+            "content":"With a vocabulary of 12 different calls, these otters can be a noisy bunch. The calls are used for contact, summons, greeting, threat and alarm. Scent markings are just as important for communication. Otters emit a musky smell from paired scent glands at the base of the tail that helps mark their territory. The scent also gives chemical cues as to identity, sex and reproductive state. If you were wondering about the smell at the exhibit, this probably explain"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/spotted-hyena-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/spotted-hyena.html",
+        "name":"Spotted hyena",
+        "lifespan":"25 years in the wild",
+        "diet":"Carrion or live prey",
+        "Habitat":"Semi-desert",
+        "Range":"Sub-Saharan Africa",
+        "info":[
+          {
+            "name":"Combat-ready",
+            "content":"They look like large dogs, but are more closely related to cats like lions and tigers. Their powerful jaws give them the strongest bite of any mammal. Though commonly regarded asscavengers, they are strong hunters, especially when in a large group. Cubs are born with eyes open and teeth present, ready for combat the moment they're born. Siblings compete fiercely to nurse first and weaker ones are sometimes killed. Their mother's milk is extremely high in protein and fat. By the time they're weaned at 1-1.5 years, juveniles already have a complete set of adult teeth"
+          },
+          {
+            "name":"Masculine females",
+            "content":"Naturally selected for size and aggression, the high levels of testosterone produced at an early age may have led to the development of the 'pseudopenis' in females. This is an enlarged clitoris through which they urinate, mate, and deliver young. Females also have a pair of sacs filled with fibrous tissue which look much like the male scrotum. It is now thought that this sexual mimicry may have protected masculine-looking femalesfrom the aggression of other females"
+          },
+          {
+            "name":"Hyena hierarchy",
+            "content":"Spotted hyenas live in female-led clans of up to 80. Some think the pseudopenis may help clan members recognise one another. Individuals often greet each other by standing side-by-side and head-to-tail, sniffing each other's extended 'phallus' for up to 30 seconds. Females do not usually greet males this way though they may make an exception for the highest-ranked males. In spotted hyena hierarchy, even the lowliest female is one rung above the most high-ranking male"
+          },
+          {
+            "name":"Communicative clans",
+            "content":"Spotted hyenas also vocalise when they meet, using groans and soft squeals. A fast whoop is used by excited hyenas at a kill - males sound this more often than females but are typically ignored by the clan. Female calls tend to get more of a response. Hyenas kept waiting at a kill will emit a lowing call. Grunts and a rattling growl are used in aggressive interactions with clan members. Their trademark giggling. or \"laughing\" call, expresses fear or excitement"
+          },
+          {
+            "name":"Humans and hyenas",
+            "content":"Inspiring fear and also reverence in the eyes of humans, spotted hyenas feature prominently in the culture of many African people. The Maasai of Kenya and Tanzania leave their dead out to be consumed by the spotted hyenas. Some Ethiopians use the hair and scraps of skin collected from dead hyenas as talismans and their body parts are used in witchcraft in Tanzania. In other parts of Africa, they are alternately persecuted as pests or exploited for tourism"
+          }
+        ]
+      },
+      {
+        "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/african-white-lion-1X1.png",
+        "url":"https://www.wrs.com.sg/en/night-safari/animals-and-zones/african-white-lion.html",
+        "name":"White African lion",
+        "lifespan":"Up to 16 years",
+        "diet":"Large animals ",
+        "Habitat":"From open plains ",
+        "Range":"Timbavati region of Africa",
+        "info":[
+          {
+            "name":"The lion's share",
+            "content":"Sipho lost his canines in an injury before he came to Night Safari. He's fiercely protective of his 'lion's share' of the food and doesn't take well to Mandisa messing around during feeding time. They each consume 10 to 15 kilograms of meat in a day. A variety of meat, including chicken, veal, beef and venison, is provided. To encourage our lions to exercise their jaws, we serve them meat with bones attached"
+          },
+          {
+            "name":"Meet Sipho and Mandisa",
+            "content":"Our white lions came from a zoo in China but bear Swahili names. The male is Sipho, meaning 'gift' and the female is Mandisa, meaning 'sweet'. Mandisa is curious and especially enjoys the attention of her keepers. She clowns around with Sipho, inviting him to play, though he often gets annoyed by her antics"
+          },
+          {
+            "name":"Leucistic lions",
+            "content":"White lions are leucistic, not albino - they are not totally devoid of pigmentation. Instead of the red eyes seen in albinos, they have blue or yellow eyes. They also sport black nose tips and dark patches behind their ears. Due to an uncommon gene mutation, their light tawny or off-white coat is a few shades lighter than that of the common lion.They were heavily sought after by circuses and hunted as trophies and became technically extinct in the wild in the early 1990s"
+          }
+        ]
+      }
+    ],
+"show": [
+  {
+   "img":"https://www.wrs.com.sg/content/wrs/en/night-safari/things-to-do/shows/thumbuakar-performance.html",
+   "url":"https://www.wrs.com.sg/en/night-safari/things-to-do/shows.html",
+   "name": "Thumbuakar Performance",
+   "position": "Entrance Courtyard",
+   "time": "6.45pm,8.00pm,9.00pm,10.00pm",
+   "duration": "7 mins"
+ },
+ {
+   "img":"https://www.wrs.com.sg/content/wrs/en/night-safari/things-to-do/shows/creatures-of-the-night-show.html",
+   "url":"https://www.wrs.com.sg/en/night-safari/things-to-do/shows.html",
+   "name": "Creatures of the Night",
+   "position": "Amphitheatre",
+   "time": "7.15pm,8.30pm,9.30pm,10.30pm",
+   "duration": "25 mins"
+ }
+],
+"DiningandShop": {
+  "Restaurant": [
+    {
+      "img":"https://www.wrs.com.sg/content/dam/wrs/singapore-zoo/dine-shop/ulu-restaurant--new.jpg",
+      "name": "Ulu Ulu Safari Restaurant",
+      "location": "ENTRANCE PLAZA",
+      "time": "5.30PM TO 11.00PM",
+      "info": "Drop by the Ulu Ulu Safari Restaurant for a quick supper after your Night Safari adventure. Here, you’ll find a mouthwatering selection of signature Indian dishes and salads to choose from, making it a perfect ending to your wild night out"
+    },
+    {
+      "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/dine-shop/ben-jerry.jpg",
+      "name": "Ben & Jerry's",
+      "location": "ENTRANCE PLAZA",
+      "time": "5.30PM TO 12.00AM",
+      "info": "Cure your ice cream cravings with our diverse mix of experimental ice cream flavours with chunks and swirls"
+    },
+    {
+      "img":"https://www.wrs.com.sg/content/dam/wrs/singapore-zoo/dine-shop/safari-sizzles-new.jpg",
+      "name": "Safari Sizzles",
+      "location": "ENTRANCE PLAZA",
+      "time": "5.30PM TO 12.00AM",
+      "info": "Tantalise your taste buds with something different: our selection of gourmet hot dogs, sizzling hot fried snacks, chapati rolls, and alcoholic thirst quenchers make for tasty grub"
+    },
+    {
+      "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/fnb/JR-chix.jpg",
+      "name": "Jungle Rotisserie",
+      "location": "Entrance Courtyard",
+      "time": "5.30PM TO 11.00PM",
+      "info": "Tuck into succulent, smoky meat at the al fresco Jungle Rotisserie restaurant, right at the Entrance Courtyard, and enjoy a stage-side view of our fiery Thumbuakar Performance"
+    },
+    {
+      "img":"https://www.wrs.com.sg/content/dam/wrs/wrs-corporate/events/dining-experiences/ulu-asian-buffet/ulu-asian-buffet.jpg",
+      "name": "Ulu Ulu Asian Buffet",
+      "location": "ULU ULU SAFARI Restaurant",
+      "time": "5.30PM TO 8.15PM DAILY",
+      "info": "Situated in a cosy area of Night Safari, this 300-seater restaurant offers dining under burnished wooden beams and rustic rattan fans. Or you can choose to dine al fresco in the company of animals. Either way, a meal at Ulu Ulu Safari Restaurant is sure to be a delightful experience",
+      "price": {
+        "adult": 45,
+        "child": 34
+      }
+    },
+    {
+      "img":"https://www.wrs.com.sg/content/dam/wrs/wrs-corporate/events/dining-experiences/ulu-indian-buffet/ulu-indian-buffet.jpg",
+      "name": "Ulu Ulu Indian Buffet",
+      "location": "ULU ULU SAFARI Restaurant",
+      "time": "8.30PM TO 10.30PM DAILY",
+      "info": "Drop by the Ulu Ulu Safari Restaurant for a quick supper after your Night Safari adventure. Here, you’ll find a mouthwatering selection of signature Indian dishes and salads to choose from, making it a perfect ending to your wild night out",
+      "price": {
+        "adult": 29,
+        "child": 19
+      }
+    }
+  ],
+  "gift": [
+    {
+      "img":"https://www.wrs.com.sg/content/dam/wrs/singapore-zoo/dine-shop/gift-shop-new.jpg",
+      "name": "Gift shop",
+      "location": "Night Safari ENTRANCE",
+      "time": "5.00PM - 12.00AM",
+      "info": "Bring home plush toys of our unique night creatures at the Night Safari gift shop! Here, you’ll find plenty of eye-catching souvenirs to remind you of your visit. Also, do bring food souvenirs such as chocolates, cookies and our local favourite kaya spread at the Village Shop"
+    }
+  ]
+},
+"promotions": [
+  {
+    "img":"https://www.wrs.com.sg/content/dam/wrs/parks/whats-on/ntuc-link-2019.png",
+    "name": "NTUC Link Members",
+    "date": "in 15 FEB - 31 AUG 2019",
+    "info": {
+      "ticket": "10% OFF Adult/Child single park admission tickets;30% OFF for Senior (aged 60 & above) single park standard admission tickets;Earn 5 LinkPoints with every $1 spend",
+      "Friends of Wildlife Membership": "5% discount on Friends of Wildlife Membership (Family/Individual); Earn 5 LinkPoints with every $1 spend (worth additional 3.3% rebate)",
+      "Retail Purchases": "Plus! app Deal: Collect 4 stamps (with every $30 nett spend & above) to redeem an Animal Icon Plush Toy ;Earn 5 LinkPoints with every $1 spend (worth additional 3.3% rebate)"
+    },
+    "url": "https://plus.com.sg/discover/promotion/wildlife-reserves-singapore-promotion"
+  },
+  {
+    "img":"https://www.wrs.com.sg/content/dam/wrs/parks/whats-on/wrs-card-imageprep-01.jpg",
+    "name": "PAssion Silver Card Members’",
+    "date": "till 31 March 2020",
+    "info": {
+      "ticket": "Enjoy 30% off Senior admission tickets for PAssion Silver Card Members"
+    },
+    "url": "https://www.wrs.com.sg/en/night-safari/whats-on/passion-silver-tncs.html"
+  },
+  {
+    "img":"https://www.wrs.com.sg/content/dam/wrs/whats-on/Website%20Image-NTUC%20cardface_23April2019-01.jpg",
+    "name": "NTUC, SAFRA and PAssion Card Members’",
+    "date": "till 31 March 2020",
+    "info": {
+      "ticket": "NTUC, SAFRA and PAssion Card members enjoy 10%* off Adult and Child admission tickets"
+    },
+    "url": "https://www.wrs.com.sg/en/night-safari/whats-on/ntuc-safra-passion-promo-tnc.html"
+  }
+],
+"map": "https://www.wrs.com.sg/en/night-safari/plan-your-visit/night-safari-map.html",
+"location": {
+  "Address": "80 Mandai Lake Road Singapore 729826",
+  "Postal": 729826
+},
+"Accessibility": {
+  "wheelchairs": {
+    "price": 0
+  },
+  "Stroller": {
+    "price": 9,
+    "discount": "Family & Individual members enjoy a 20% discount"
+  }
+},
+"program": [
+  {
+    "img":"https://www.wrs.com.sg/content/dam/wrs/night-safari/schools-and-groups/Pangolin.jpg",
+    "url": "https://www.wrs.com.sg/en/night-safari/learning-with-us/night-safari-glides-to-school.html?intcmp=1ccc%7C%7CNight+Safari+Glides+to+School%7Cpri%7CFind+out+more%7Cnight-safari%3Alearning-with-us",
+    "name": "Why Did the Pangolin Cross the Road",
+    "duration": "30mins",
+    "student": [
+      "pre-school",
+      "primary"
+    ],
+    "language": [
+      "English",
+      "Chinese"
+    ],
+    "info": "One of the few mammals still found in Singapore, pangolins often get injured or killed in road accidents. Join Ranger Ooz on an adventure to find out more about pangolins and other animals that still roam our forests",
+    "price": "$300/session"
+  }
+],
+"tips": [
+  {
+    "name": "Plan ahead",
+    "content": "With so many amazing animals, shows and night trails to discover, we encourage you to come early to make the most of your experience"
+  },
+  {
+    "name": "Be ready for rain",
+    "content": "We get occasional showers or downpour in these parts. If the rain gets too heavy, hop on our tram or seek shelter in a stall or gift shop (near the entrance). In case of lightning, do head indoors immediately for your safety"
+  },
+  {
+    "name": "Wear insect repellent",
+    "content": "Though the park takes preventive measures for guests, avoid insect bites by putting on insect repellent. We encourage wearing clothes that give you maximum cover or are light and bright, as mosquitoes are most active at night and attracted to dark colours"
+  },
+  {
+    "name": "Put on comfy shoes",
+    "content": "Our park is best explored at a leisurely walking pace – and your footwear can make all the difference! Be sure to wear something comfortable that will keep your pricet from aching"
+  },
+  {
+    "name": "Stay hydrated",
+    "content": "Be sure to have adequate drinking water with you. If you don’t, not to worry! There are water dispensers available around our park. All you need to bring is your own water bottle"
+  },
+  {
+    "name": "priceling hungry?",
+    "content": "There are loads of dining options to choose from at Night Safari. From rustic dining at Ulu Ulu Safari Restaurant (outside the park entrance) to quicker meal options at Zebra Cafe (at East Lodge), we have your appetite covered! We do recommend having your dinner before you enter the park"
+  },
+  {
+    "name": "Need help?",
+    "content": "Should you have a question or pricel unwell, pricel free to approach any of our friendly uniformed staff members around the park for assistance"
+  }
+],
+"Park Rules": [
+  {
+    "name": "Explore safely",
+    "content": "Stay only where humans roam. Venturing into prohibited areas is not allowed and highly dangerous"
+  },
+  {
+    "name": "Ride safely",
+    "content": "Please stay seated and keep hands and pricet within the tram during the ride"
+  },
+  {
+    "name": "Do NOT stampede",
+    "content": "There's room enough for everyone in the park, so do not make a rush for any show or exhibit"
+  },
+  {
+    "name": "Respect our animals",
+    "content": "The park is our animals’ home, so treat them with respect. This includes NOT priceding or teasing the animals"
+  },
+  {
+    "name": "Commercial footage",
+    "content": "Without official consent from Night Safari, the commercial use of videotaped/filmed footage and photos is strictly forbidden"
+  },
+  {
+    "name": "Image rights",
+    "content": "You may be filmed, videotaped, or photographed by park representatives during your visit. Your admission to Night Safari serves as your consent to the use of your image"
+  },
+  {
+    "name": "Smoke-free park",
+    "content": "Night Safari is smoke-free. The designated smoking point is located outside the park entrance"
+  },
+  {
+    "name": "Emergency hotline",
+    "content": "Call +65 6360 8612 in case of accidents or untoward encounters with wildlife"
+  },
+  {
+    "name": "No flash photography ",
+    "content": "Please switch off the flash photography function in your camera when taking photos as it may blind, disturb or startle the animals"
+  },
+  {
+    "name": "No pets or plants allowed",
+    "content": "The park is a designated quarantine area. Pets and plants are not permitted as they may affect our animals' health and safety"
+  },
+  {
+    "name": "Recreational transportation ",
+    "content": "Skate scooters, inline skates, rollerblades, tricycles and pull trolleys are not permitted in the park as they may compromise our guests' safety"
+  }
+],
+"Senior min Age": 60,
+"Child min Age": 3,
+"Child max Age": 12
+}
+}
