@@ -12,7 +12,7 @@ from utils import *
 class QueryFactory:
 
     @logger
-    def __init__(self, datafile="./data/night_safari.json", frontend="default"):
+    def __init__(self, datafile="../data/night_safari.json", frontend="default"):
         self.data_dict = self._build_knowledge_base(datafile)
         self.lexicon = Lexicon(self.data_dict)
         self.params = None
