@@ -9,71 +9,10 @@ from utils import *
 # TODO: replace all [""] of dict into get method right before releasing the code
 
 
-"""response = {
-    "messages": [
-        {
-            "buttons": [
-                {
-                    "openUrlAction": {
-                        "url": "https://www.google.com/search?biw=1745&bih=915&tbm=isch&sa=1&ei=CXddXYTCH8aS9QP394iwCw&q=iss&oq=iss&gs_l=img.3..0l10.4422.4709..5008...0.0..0.39.109.3......0....1..gws-wiz-img.......35i39.qHZQ3FSOsS4&ved=0ahUKEwjE6vPMtpTkAhVGSX0KHfc7ArYQ4dUDCAY&uact=5#imgrc=GqJTyt3VS1je5M:"
-                    },
-                    "title": "Direction to Zoo"
-                }
-            ],
-            "formattedText": "AoG Card Description",
-            "image": {
-                "url": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjylbPQtpTkAhUBT30KHanvCFcQjRx6BAgBEAQ&url=https%3A%2F%2Fcosmosmagazine.com%2Fspace%2Fmicrobes-in-space-concerns-raised-about-bacteria-in-the-iss&psig=AOvVaw15xPtD6BR6LrypsgQRJpVF&ust=1566492815479868",
-                "accessibilityText": "Google map snapshot"
-            },
-            "platform": "google",
-            "subtitle": "AoG Card Subtitle",
-            "title": "AoG Card Title",
-            "type": "basic_card"
-        }
-    ]
-}"""
-template = {
-    "payload": {
-        "google": {
-            "expectUserResponse": True,
-            "richResponse": {
-                "items": [
-                    {
-                        "simpleResponse": {
-                            "textToSpeech": "This is a basic card example."
-                        }
-                    },
-                    {
-                        "basicCard": {
-                            "title": "Title: this is a title",
-                            "subtitle": "This is a subtitle",
-                            "formattedText": "",
-                            "image": {
-                                "url": "https://cosmos-images1.imgix.net/file/spina/photo/17322/181123-ISS-full.jpg?ixlib=rails-2.1.4&auto=format&ch=Width%2CDPR&fit=max&w=1920",
-                                "accessibilityText": "Google map snapshot"
-                            },
-                            "buttons": [
-                                {
-                                    "title": "image",
-                                    "openUrlAction": {
-                                        "url": "https://www.google.com/search?biw=1745&bih=915&tbm=isch&sa=1&ei=CXddXYTCH8aS9QP394iwCw&q=iss&oq=iss&gs_l=img.3..0l10.4422.4709..5008...0.0..0.39.109.3......0....1..gws-wiz-img.......35i39.qHZQ3FSOsS4&ved=0ahUKEwjE6vPMtpTkAhVGSX0KHfc7ArYQ4dUDCAY&uact=5#imgrc=GqJTyt3VS1je5M:"
-                                    }
-                                }
-                            ],
-                            "imageDisplayOptions": "CROPPED"
-                        }
-                    }
-                ]
-            }
-        }
-    }
-}
-
-
 class QueryFactory:
 
     @logger
-    def __init__(self, datafile="./data/night_safari.json"):
+    def __init__(self, datafile="./data/night_safari.json", frontend="default"):
         self.data_dict = self._build_knowledge_base(datafile)
         self.lexicon = Lexicon(self.data_dict)
         self.params = None
@@ -96,11 +35,14 @@ class QueryFactory:
             "Accessibility": self.access_intent,
             "Admission": self.admission_intent
         }
+        self.frontend = frontend
+        if self.frontend == "action":
+            self.card_fmt = Payload_formater()
 
     def _build_knowledge_base(self, datafile: str):
         with open(datafile, 'rb') as f:
             data_dict = json.loads(f.read())
-        return data_dict['Night Safari']
+        return data_dict.get('Night Safari')
 
     @logger
     def order(self, params: dict):
@@ -108,234 +50,301 @@ class QueryFactory:
 
     @logger
     def admission_intent(self, query_kw):
-        if query_kw == "when" or self.params["TimeBoundary"]:
-            if myString("open") == myString(self.params["TimeBoundary"]):
-                return f"Night Safari opens at {self.data_dict['time']['Opening Hours']}."
-            elif myString("close") == myString(self.params["TimeBoundary"]):
-                return f"Night Safari closes at {self.data_dict['time']['Closing Hours']}."
-            elif myString("last entry") == myString(self.params["TimeBoundary"]):
-                return f"The last entry of Night Safari is {self.data_dict['time']['Last entry']}."
-            elif myString("time slot") == myString(self.params["TimeBoundary"]):
-                return f"The time slot of Night Safari is {self.data_dict['time']['Admission time slots']}."
+        if query_kw == "when" or self.params.get("TimeBoundary"):
+            if myString("open") == myString(self.params.get("TimeBoundary")):
+                return f"Night Safari opens at {self.data_dict.get('time').get('Opening Hours')}."
+            elif myString("close") == myString(self.params.get("TimeBoundary")):
+                return f"Night Safari closes at {self.data_dict.get('time').get('Closing Hours')}."
+            elif myString("last entry") == myString(self.params.get("TimeBoundary")):
+                return f"The last entry of Night Safari is {self.data_dict.get('time').get('Last entry')}."
+            elif myString("time slot") == myString(self.params.get("TimeBoundary")):
+                return f"The time slot of Night Safari is {self.data_dict.get('time').get('Admission time slots')}."
             else:
-                return f"Opening: {self.data_dict['time']['Opening Hours']}" \
-                       f"; Closing: {self.data_dict['time']['Closing Hours']}" \
-                       f"; Admission time slots: {self.data_dict['time']['Admission time slots']}" \
-                       f"; Last entry: {self.data_dict['time']['Last entry']}."
+                return f"Opening: {self.data_dict.get('time').get('Opening Hours')}" \
+                       f"; Closing: {self.data_dict.get('time').get('Closing Hours')}" \
+                       f"; Admission time slots: {self.data_dict.get('time').get('Admission time slots')}" \
+                       f"; Last entry: {self.data_dict.get('time').get('Last entry')}."
         elif query_kw == "what":
-            return self.data_dict["description"]
+            return self.data_dict.get("description")
         elif query_kw == "where":
-            return f"Our Night Safari Area is located at {self.data_dict['location']['Address']}.\n" \
+            return f"Our Night Safari Area is located at {self.data_dict.get('location').get('Address')}.\n" \
                    f"Check out this park map :)"
         elif query_kw == "how much":
             for group_name, info in self.lexicon.pricegroup.items():
-                if myString(group_name) == myString(self.params["Price-group"]):
+                if myString(group_name) == myString(self.params.get("Price-group")):
                     return f"Admission rate for {group_name}: {info}. \n Beyond that, ONLINE orders enjoy " \
-                           f"{self.data_dict['ticket']['Online discount']} off. " \
-                           f"{self.data_dict['ticket']['tips']}"
+                           f"{self.data_dict.get('ticket').get('Online discount')} off. " \
+                           f"{self.data_dict.get('ticket').get('tips')}"
             return "Admission rates: \n" + \
                    "\n".join(tuple([f"{group_name}: ${info}" for group_name, info in self.lexicon.pricegroup.items()]))
         elif query_kw == "bring":
-            return f"Please bring your {self.data_dict['Admission rates']['bring']} is you like."
+            return f"Please bring your {self.data_dict.get('Admission rates').get('bring')} is you like."
+
+    @logger
+    def admission_intent_card(self, query_kw):
+        if query_kw == "when" or self.params.get("TimeBoundary"):
+            if myString("open") == myString(self.params.get("TimeBoundary")):
+                return f"Night Safari opens at {self.data_dict.get('time').get('Opening Hours')}."
+            elif myString("close") == myString(self.params.get("TimeBoundary")):
+                return f"Night Safari closes at {self.data_dict.get('time').get('Closing Hours')}."
+            elif myString("last entry") == myString(self.params.get("TimeBoundary")):
+                return f"The last entry of Night Safari is {self.data_dict.get('time').get('Last entry')}."
+            elif myString("time slot") == myString(self.params.get("TimeBoundary")):
+                return f"The time slot of Night Safari is {self.data_dict.get('time').get('Admission time slots')}."
+            else:
+                return f"Opening: {self.data_dict.get('time').get('Opening Hours')}.\n" \
+                       f"; Closing: {self.data_dict.get('time').get('Closing Hours')}.\n" \
+                       f"; Admission time slots: {self.data_dict.get('time').get('Admission time slots')}.\n" \
+                       f"; Last entry: {self.data_dict.get('time').get('Last entry')}."
+        elif query_kw == "what":
+            return self.data_dict.get("description")
+        elif query_kw == "where":
+
+            return f"Our Night Safari Area is located at {self.data_dict.get('location').get('Address')}.\n" \
+                   f"Check out this park map :)"
+        elif query_kw == "how much":
+            for group_name, info in self.lexicon.pricegroup.items():
+                if myString(group_name) == myString(self.params.get("Price-group")):
+                    return f"Admission rate for {group_name}: {info}. \n Beyond that, ONLINE orders enjoy " \
+                           f"{self.data_dict.get('ticket').get('Online discount')} off. " \
+                           f"{self.data_dict.get('ticket').get('tips')}"
+            return "Admission rates: \n" + \
+                   "\n".join(tuple([f"{group_name}: ${info}" for group_name, info in self.lexicon.pricegroup.items()]))
+        elif query_kw == "bring":
+            return f"Please bring your {self.data_dict.get('Admission rates').get('bring')} is you like."
 
     @logger
     def programm_intent(self, query_kw):
         for prog, info in self.lexicon.programm.items():
-            if myString(prog) == myString(self.params["Programm"]):
+            if myString(prog) == myString(self.params.get("Programm")):
                 if query_kw == "what":
-                    return self.data_dict["program"]["info"] + f"check out this link to find more! {info['url']}"
+                    return self.data_dict.get("program").get("info") + f"check out this link to find more! {info.get('url')}"
                 elif query_kw == "how much":
-                    return f"{self.params['Programm']} cost {info['price']}"
+                    return f"{self.params.get('Programm')} cost {info.get('price')}"
                 elif query_kw == "when":
-                    return f"The length of {self.params['Programm']} is about {info['duration']}"
-        if myString("programmes") == myString(self.params['Programm']):
-            return f"Check out this program: \"{self.data_dict['program'][0]['name']}\".\n {self.data_dict['program'][0]['info']}."
+                    return f"The length of {self.params.get('Programm')} is about {info.get('duration')}"
+        if myString("programmes") == myString(self.params.get('Programm')):
+            if self.frontend == "default":
+                descs= '\n\n'.join(tuple(f"\"{program.get('name')}\"\n{program.get('info')}." for program in self.data_dict.get('program')))
+                return f"Check out these programmes:\n{descs}"
+            elif self.frontend == "action":
+                return self.card_fmt.list_card_formatter(list_title="Check out these programmes",
+                                                         textToSpeech="Check out these programmes:",
+                                                         item_titles=list(self.lexicon.programm.keys()),
+                                                         item_descs=[info.get("info") for info in self.lexicon.programm.values()],
+                                                         item_img_urls=[info.get("image") for info in self.lexicon.programm.values()]
+                                                         )
         else:
             return ""
 
     @logger
     def event_intent(self, query_kw):
         for event_name, info in self.lexicon.event.items():
-            if myString(event_name) == myString(self.params["Event"]):
+            if myString(event_name) == myString(self.params.get("Event")):
                 if query_kw == "what":
-                    return f"{self.params['Event']}: {info['content']}."
+                    return f"{self.params.get('Event')}: {info.get('content')}."
                 elif query_kw == "how much":
-                    return f"{self.params['Event']} don't have a price tag, which means it's free!"
+                    return f"{self.params.get('Event')} don't have a price tag, which means it's free!"
                 elif query_kw == "when":
-                    return f"{self.params['Event']} is going to be hold on {info['date']}" + \
-                           " at {info['time']}." if "time" in info.keys() else "."
+                    return f"{self.params.get('Event')} is going to be hold on {info.get('date')}" + \
+                           " at {info.get('time')}." if "time" in info.keys() else "."
                 elif query_kw == "where":
-                    return f"The venue of {self.params['Event']} will be at {info['position']}"
+                    return f"The venue of {self.params.get('Event')} will be at {info.get('position')}"
                 elif query_kw == "bring":
-                    return f"You don't have to bring any thing, but {info['tips']}" if info['tips'] \
-                        else f"Sorry, we don't know about that for {self.params['Event']}."
+                    return f"You don't have to bring any thing, but {info.get('tips')}" if info.get('tips') \
+                        else f"Sorry, we don't know about that for {self.params.get('Event')}."
                 else:
                     return ""
-        if myString("event") == myString(self.params['Event']):
-            return f"Check out this event: \"{self.data_dict['events'][0]['name']}\".\n {self.data_dict['events'][0]['content']}."
+        if myString("event") == myString(self.params.get('Event')):
+            desc = '\n\n'.join(
+                tuple(f"\"{desc.get('name')}\"\n{desc.get('content')}." for desc in self.data_dict.get('event')))
+            return f"Check out these events: {desc}"
         else:
             return ""
 
     @logger
     def animal_intent(self, query_kw):
         for animal_name, info in self.lexicon.animal.items():
-            if myString(animal_name) == myString(self.params["Animal"]):
-                if self.params["animalAttribute"]:
-                    return f"The {self.params['animalAttribute']} of {animal_name} is " \
-                           f"{info[self.params['animalAttribute']].lower()}."
+            if myString(animal_name) == myString(self.params.get("Animal")):
+                if self.params.get("animalAttribute"):
+                    return f"The {self.params.get('animalAttribute')} of {animal_name} is " \
+                           f"{info.get(self.params.get('animalAttribute')).lower()}."
                 elif query_kw == "what":
-                    descs = '. '.join(tuple(desc['name'] + ': ' + desc['content'] for desc in info['info']))
-                    return f"{self.params['Animal']}: {descs}."
+                    descs = '. '.join(tuple(desc.get('name') + ': ' + desc.get('content') for desc in info.get('info')))
+                    return f"{self.params.get('Animal')}: {descs}."
                 elif query_kw == "where":
                     for zone, info in self.lexicon.zone.items():
-                        for animal_exist in list(info['Animals'].split(',')):
+                        for animal_exist in list(info.get('Animals').split(',')):
                             if myString(animal_name) == myString(animal_exist):
                                 return f"The zone where {animal_name} lives is {zone}."
                     return f"Sorry, we don't know where the {animal_name} lives in the zoo."
                 else:
-                    return f"Sorry, we don't know about that for {self.params['Animal']}."
-        if myString("animal") == myString(self.params['Animal']):
-            desc = '. '.join(tuple(desc['name'] + ': ' + desc['content'] for desc in self.data_dict['animals'][0]['info']))
-            return f"Learn about this animal: {self.data_dict['animals'][0]['name']}: {desc}."
+                    return f"Sorry, we don't know about that for {self.params.get('Animal')}."
+        if myString("animal") == myString(self.params.get('Animal')):
+            desc = desc = '\n\n'.join(
+                tuple(f"{zone.get('name')}\n{zone.get('info')}." for zone in self.data_dict.get('animals')))
+            return f"Learn about this animal: {self.data_dict.get('animals')[0].get('name')}: {desc}."
         else:
             return ""
 
     @logger
     def zone_intent(self, query_kw):
         for zone_name, info in self.lexicon.zone.items():
-            if myString(zone_name) == myString(self.params["Zone"]):
+            if myString(zone_name) == myString(self.params.get("Zone")):
                 if query_kw == "what":
-                    return f"In {self.params['Zone']} lives {info['Animals']}. {info['info']}."
+                    return f"In {self.params.get('Zone')} lives {info.get('Animals')}. {info.get('info')}."
                 else:
-                    return f"Sorry, we don't know about that for {self.params['Zone']}."
-        if myString("zone") == myString(self.params['Zone']):
-            return f"Learn about this zone: {self.data_dict['zone'][0]['name']}: {self.data_dict['zone'][0]['info']}."
+                    return f"Sorry, we don't know about that for {self.params.get('Zone')}."
+        if myString("zone") == myString(self.params.get('Zone')):
+            desc = '\n\n'.join(
+                tuple(f"{zone.get('name')}\n{zone.get('info')}." for zone in self.data_dict.get('zone')))
+            return f"Check out these zones: {desc}"
         else:
             return ""
 
     @logger
     def dine_and_shop_intent(self, query_kw):
         for rest, info in self.lexicon.dine.items():
-            if myString(rest) == myString(self.params["DineandShop"]):
+            if myString(rest) == myString(self.params.get("DineandShop")):
                 if query_kw == "what":
-                    return info['info'] + '.'
+                    return info.get('info') + '.'
                 elif query_kw == "when":
-                    return f"The business hours of {self.params['DineandShop']} is {info['time']}."
+                    return f"The business hours of {self.params.get('DineandShop')} is {info.get('time')}."
                 elif query_kw == "where":
-                    return f"{self.params['DineandShop']}: located at {info['location']}."
+                    return f"{self.params.get('DineandShop')}: located at {info.get('location')}."
                 elif query_kw == "how much" and "Buffet" in rest:
-                    desc = ', '.join(tuple(group + ': $' + price for group, price in info['price'].items()))
-                    return f"The price of {self.params['DineandShop']}: {desc}."
+                    desc = ', '.join(tuple(group + ': $' + price for group, price in info.get('price').items()))
+                    return f"The price of {self.params.get('DineandShop')}: {desc}."
         for shop, info in self.lexicon.shop.items():
-            if myString(shop) == myString(self.params['DineandShop']):
+            if myString(shop) == myString(self.params.get('DineandShop')):
                 if query_kw == "when":
-                    return f"The business hours of {self.params['DineandShop']} is {info['time']}."
+                    return f"The business hours of {self.params.get('DineandShop')} is {info.get('time')}."
                 elif query_kw == "where":
-                    return f"{self.params['DineandShop']} is located at {info['location']}."
+                    return f"{self.params.get('DineandShop')} is located at {info.get('location')}."
                 elif query_kw == "what":
-                    return info['info'] + '.'
+                    return info.get('info') + '.'
                 else:
-                    return f"Sorry, we don't know about that for {self.params['DineandShop']}."
-        if myString("gift shop") == myString(self.params['DineandShop']):
-            return f"Check out this shop: {self.data_dict['DiningandShop']['gift'][0]['name']}:" \
-                   f" {self.data_dict['DiningandShop']['gift'][0]['info']}."
-        elif myString("Restaurant") == myString(self.params['DineandShop']):
-            return f"Check out this restaurant: {self.data_dict['DiningandShop']['Restaurant'][0]['name']}: " \
-                   f"{self.data_dict['DiningandShop']['Restaurant'][0]['info']}."
+                    return f"Sorry, we don't know about that for {self.params.get('DineandShop')}."
+        if myString("gift shop") == myString(self.params.get('DineandShop')):
+            desc = '\n\n'.join(
+                tuple(f"{shop.get('name')}\n{shop.get('info')}." for shop in self.data_dict.get('DiningandShop').get('gift')))
+            return f"Check out these shops: {desc}"
+        elif myString("Restaurant") == myString(self.params.get('DineandShop')):
+            desc = '\n\n'.join(
+                tuple(f"{rest.get('name')}\n{rest.get('info')}." for rest in self.data_dict.get('DiningandShop').get('Restaurant')))
+            return f"Check out these restaurants: {desc}"
         else:
             return ""
 
     @logger
     def promotion_intent(self, query_kw):
         for prom, info in self.lexicon.promotion.items():
-            if myString(prom) == myString(self.params['Membership']):
+            if myString(prom) == myString(self.params.get('Membership')):
                 if query_kw == "what":
-                    desc = ', '.join(k + ': ' + v for k, v in info['info'].items())
-                    return f"Lobang: {self.params['Membership']}; \n" \
-                           f"Valid {info['date']}; \n" \
+                    desc = ', '.join(k + ': ' + v for k, v in info.get('info').items())
+                    return f"Lobang: {self.params.get('Membership')}; \n" \
+                           f"Valid {info.get('date')}; \n" \
                            f"{desc}; \n" \
-                           f"Check out this link to find more! {info['url']}."
+                           f"Check out this link to find more! {info.get('url')}."
                 elif query_kw == "when":
-                    return f"Valid {info['date']}."
+                    return f"Valid {info.get('date')}."
                 else:
-                    return f"Sorry, we don't know about that for {self.params['Membership']}."
-        if myString("promotion") == myString(self.params['Promotion']):
-            listing = '\n'.join(tuple(f"{name}: {info['info']['ticket']}" for name, info in self.lexicon.promotion.items()))
-            return f"Check out this promotion: \n" \
-                   f"{listing}."
+                    return f"Sorry, we don't know about that for {self.params.get('Membership')}."
+        if myString("promotion") == myString(self.params.get('Promotion')):
+            listing = '\n\n'.join(
+                tuple(f"\"{p.get('name')}\"\n{p.get('info').get('ticket')}." for p in self.data_dict.get('promotions')))
+            return f"Check out these promotion: {listing}"
         else:
             return ""
 
     @logger
     def activities_intent(self, query_kw):
         for act, info in self.lexicon.activities.items():
-            if myString(act) == myString(self.params['Activities']):
-                if myString(act) == myString("Keepers' Chit-Chat") and self.params["chitchat-animal"]:
-                    info.update(info['chit-chat animal'][self.params["chitchat-animal"].lower()])
-                    act += " " + self.params["chitchat-animal"]
+            if myString(act) == myString(self.params.get('Activities')):
+                if myString(act) == myString("Keepers' Chit-Chat") and self.params.get("chitchat-animal"):
+                    info.update(info.get('chit-chat animal').get(self.params.get("chitchat-animal").lower()))
+                    act += " " + self.params.get("chitchat-animal")
                 if query_kw == "what":
-                    return f"{act}: {info['content']}."
+                    return f"{act}: {info.get('content')}."
                 elif query_kw == "when":
-                    return info['time'] + '.'
+                    return info.get('time') + '.'
                 elif query_kw == "where" and "position" in info.keys():
-                    return f"The {act} happens at {info['position']}."
+                    return f"The {act} happens at {info.get('position')}."
                 elif query_kw == "how much" and 'price' in info.keys():
-                    return '; \n'.join(tuple(f"{group}: ${price}" for group, price in info['price'].items())) + '.'
+                    return '; \n'.join(tuple(f"{group}: ${price}" for group, price in info.get('price').items())) + '.'
                 else:
                     return f"Sorry, we don't know about that for {act}."
-        if myString("activities") == myString(self.params['Activities']):
-            return f"Check out this activity: {self.data_dict['activities'][0]['name']}: " \
-                   f"{self.data_dict['activities'][0]['content']}."
+        if myString("activities") == myString(self.params.get('Activities')):
+            if self.frontend == "default":
+                descs= '\n\n'.join(
+                    tuple(f"\"{act.get('name')}\"\n{act.get('content')}." for act in self.data_dict.get('activities')))
+                return f"Check out these programmes:\n{descs}"
+            elif self.frontend == "action":
+                return self.card_fmt.list_card_formatter(list_title="Check out these activities",
+                                                         textToSpeech="Check out these activities:",
+                                                         item_titles=list(self.lexicon.activities.keys()),
+                                                         item_descs=[info.get("content") for info in self.lexicon.activities.values()],
+                                                         item_img_urls=[info.get("url") for info in self.lexicon.activities.values()],
+                                                         item_img_titles=list(self.lexicon.activities.keys())
+                                                         )
         else:
             return ""
 
     @logger
     def show_intent(self, query_kw):
         for show, info in self.lexicon.show.items():
-            if myString(show) == myString(self.params['Show']):
+            if myString(show) == myString(self.params.get('Show')):
                 if query_kw == "when":
-                    return f"Here's the schedule of {self.params['Show']}: \n" \
-                           f"{info['time']}. Duration of each session is around {info['duration']}."
+                    return f"Here's the schedule of {self.params.get('Show')}: \n" \
+                           f"{info.get('time')}. Duration of each session is around {info.get('duration')}."
                 elif query_kw == "where":
-                    return f"The {self.params['Show']} is located at {info['position']}."
+                    return f"The {self.params.get('Show')} is located at {info.get('position')}."
                 else:
-                    return f"Sorry, we don't know about that for {self.params['Show']}."
-        if myString("shows") == myString(self.params['Show']):
-            desc = '; \n'.join(tuple(f"{show['name']} - schedule:{show['time']}" for show in self.data_dict['show']))
-            return f"Check out these shows: {desc}."
+                    return f"Sorry, we don't know about that for {self.params.get('Show')}."
+        if myString("shows") == myString(self.params.get('Show')):
+            desc = '\n\n'.join(
+                tuple(f"\"{show.get('name')}\"\nSchedule:{show.get('time')}." for show in self.data_dict.get('show')))
+            return f"Check out these shows: {desc}"
         else:
             return ""
 
     @logger
     def access_intent(self, query_kw):
         for access, info in self.lexicon.accessibility.items():
-            if myString(access) == myString(self.params['Accessibility']):
+            if myString(access) == myString(self.params.get('Accessibility')):
                 if query_kw == "how much":
-                    ret = f"The {self.params['Accessibility']} costs ${info['price']}." if info['price'] \
-                        else f"The {self.params['Accessibility']} is free of charge."
+                    ret = f"The {self.params.get('Accessibility')} costs ${info.get('price')}." if info.get('price') \
+                        else f"The {self.params.get('Accessibility')} is free of charge."
                     if 'discount' in info.keys():
                         ret += info.get('discount')
                     return ret
                 else:
-                    return f"Sorry, we don't know about that for {self.params['Accessibility']}."
-        if myString("Accessibility") == myString(self.params['Accessibility']):
-            desc = '; \n'.join(tuple(f"{name}: ${price['price']}" for name, price in self.data_dict['Accessibility'].items()))
+                    return f"Sorry, we don't know about that for {self.params.get('Accessibility')}."
+        if myString("Accessibility") == myString(self.params.get('Accessibility')):
+            desc = '\n\n'.join(
+                tuple(f"{name}: ${price.get('price')}" for name, price in self.data_dict.get('Accessibility').items()))
             return f"These accessibility facilities are available: {desc}."
         else:
             return ""
 
     @logger
     def parse(self):
-        if (len(self.params["QueryKeywords"]) == 0):
+        if not self.params or not self.params.get('QueryKeywords'):
             return ""
         for kw in self.kws:
-            if len(self.params["QueryKeywords"]) > 1 and "what" in self.params["QueryKeywords"]:
-                self.params["QueryKeywords"].remove("what")
-            if myString(kw) == myString(self.params["QueryKeywords"][0]):
+            if len(self.params.get("QueryKeywords")) > 1 and "what" in self.params.get("QueryKeywords"):
+                self.params.get("QueryKeywords").remove("what")
+            if myString(kw) == myString(self.params.get("QueryKeywords")[0]):
                 for domain, method in self.domain2Method.items():
-                    if self.params[domain]:
+                    if self.params.get(domain):
+                        ret = method(kw)
+                        if isinstance(ret, str):
+                            return {"fulfillmentText": method(kw)}
                         return method(kw)
                 for subdomain, method in self.subdomain2Method.items():
-                    if self.params[subdomain]:
+                    if self.params.get(subdomain):
+                        ret = method(kw)
+                        if isinstance(ret, str):
+                            return {"fulfillmentText": method(kw)}
                         return method(kw)
         return ""
