@@ -15,6 +15,7 @@ class QueryFactory:
         self.data_dict = self._build_knowledge_base(datafile)
         self.lexicon = Lexicon(self.data_dict)
         self.params = None
+        self.intent = None
 
         self.kws = ["what", "when", "how much", "where", "bring"]
         self.subdomain2Method = {
@@ -44,8 +45,9 @@ class QueryFactory:
         return data_dict.get('Night Safari')
 
     @logger
-    def order(self, params: dict):
+    def order(self, params: dict, intent: str):
         self.params = params
+        self.intent = intent
 
     @logger
     def admission_intent(self, query_kw):
@@ -160,7 +162,6 @@ class QueryFactory:
                                                                     self.lexicon.event.values()],
                                                      item_img_titles=list(self.lexicon.event.keys()),
                                                      item_urls=[""] * len(self.lexicon.event.keys()))
-                                                    # TODO: compensate the url field of "events"
         else:
             return ""
 
@@ -396,26 +397,40 @@ class QueryFactory:
     def parse(self):
         if not self.params or not self.params.get('QueryKeywords'):
             return ""
-        for kw in self.kws:
-            if len(self.params.get("QueryKeywords")) > 1 and "what" in self.params.get("QueryKeywords"):
-                self.params.get("QueryKeywords").remove("what")
-            if myString(kw) == myString(self.params.get("QueryKeywords")[0]):
-                for domain, method in self.domain2Method.items():
-                    if self.params.get(domain):
-                        ret = method(kw)
-                        if isinstance(ret, str):
-                            return {"fulfillmentText": method(kw)}
-                        return method(kw)
-                for subdomain, method in self.subdomain2Method.items():
-                    if self.params.get(subdomain):
-                        ret = method(kw)
-                        if isinstance(ret, str):
-                            return {"fulfillmentText": method(kw)}
-                        return method(kw)
-        return ""
+        if self.intent == "nightsafariIntentSolver":
+            for kw in self.kws:
+                if len(self.params.get("QueryKeywords")) > 1 and "what" in self.params.get("QueryKeywords"):
+                    self.params.get("QueryKeywords").remove("what")
+                if myString(kw) == myString(self.params.get("QueryKeywords")[0]):
+                    for domain, method in self.domain2Method.items():
+                        if self.params.get(domain):
+                            ret = method(kw)
+                            if isinstance(ret, str):
+                                return {"fulfillmentText": method(kw)}
+                            return method(kw)
+                    for subdomain, method in self.subdomain2Method.items():
+                        if self.params.get(subdomain):
+                            ret = method(kw)
+                            if isinstance(ret, str):
+                                return {"fulfillmentText": method(kw)}
+                            return method(kw)
+            return ""
+        elif self.intent == "Navigate" and sel:
+            return self.card_fmt.basic_card_formatter(image_url=self.map_url_converter(self.params["address"]),
+                                                      accessibilityText="Here is a direction from your location to the zoo.",
+                                                      formatted_text="Here is a direction from your location to the zoo.")
 
     @logger
     def map_url_converter(self, address: str):
         address.replace(" ", "+")
         address.replace(",", "%2C")
         return f"https://www.google.com/maps/search/?api=1&query={address}"
+
+    @logger
+    def map_direction_converter(self, origin: str, destination: str):
+        origin.replace(" ", "+")
+        origin.replace(",", "%2C")
+        destination.replace(" ", "+")
+        destination.replace(",", "%2C")
+        return f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}"
+

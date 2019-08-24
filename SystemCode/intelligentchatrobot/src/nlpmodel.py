@@ -17,9 +17,9 @@ class NlpModel(object):
         # SpaCy setup
         self.nlp = sp.load("en_core_web_md")
         # Env Variables
-        self.dir_path = os.path.dirname(os.path.abspath(__file__)) +"/./data/nightSafariFAQs.txt"
-        f = open(self.dir_path, 'r', errors='ignore')
-        raw = f.read()
+        self.dir_path = os.path.dirname(os.path.abspath(__file__)) +"/../data/nightSafariFAQs.txt"
+        with open(self.dir_path, 'r') as f:
+            raw = f.read()
         # preprocessing
         self.raw = raw.lower()  # converts to lowercase
         nltk.download('punkt')  # first-time use only
@@ -108,7 +108,7 @@ class NlpModel(object):
             for ent in sent.ents:
                     temp.append(ent.text)
         answer = ", ".join(temp)
-        print('answer,',answer)
+        print('answer,', answer)
 
     def query(self, question):
 
@@ -126,6 +126,8 @@ class NlpModel(object):
     def response(self,user_response):
         robo_response = ''
         self.sent_tokens.append(user_response)
+        print(self.sent_tokens)
+
         TfidfVec = TfidfVectorizer(tokenizer=self.LemNormalize, stop_words='english')
         tfidf = TfidfVec.fit_transform(self.sent_tokens)
         vals = cosine_similarity(tfidf[-1], tfidf)
@@ -133,10 +135,10 @@ class NlpModel(object):
         flat = vals.flatten()
         flat.sort()
         req_tfidf = flat[-2]
-        if (req_tfidf == 0):
-            robo_response = robo_response + "I am sorry! I don't understand you"
+        if not req_tfidf:
+            robo_response += "I am sorry! I don't understand you."
         else:
-            robo_response = robo_response + self.sent_tokens[idx]
+            robo_response += self.sent_tokens[idx]
         self.sent_tokens.remove(user_response)
         return robo_response
 

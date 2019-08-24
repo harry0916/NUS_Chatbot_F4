@@ -16,9 +16,9 @@ def web_hook():
     response = {"fulfillmentText": "Sorry, I don't understand that."}
     if req["queryResult"]["queryText"] == "GOOGLE_ASSISTANT_WELCOME":
         return make_response(jsonify({"fulfillmentText":
-                                          "Good day! Welcome to Singapore Zoo. What can I do for you today?"}))
+                                          "Good day! Welcome to Night Safari. What can I do for you today?"}))
     if req["queryResult"]["intent"]["displayName"] != "Default Fallback Intent":
-        query_parser.order(req["queryResult"]["parameters"])
+        query_parser.order(req["queryResult"]["parameters"], req["queryResult"]["intent"]["displayName"])
         response = query_parser.parse()
 
     # FAQ intents
@@ -36,5 +36,5 @@ def web_hook():
 
 if __name__ == '__main__':
     nlp = NlpModel()
-    query_parser = QueryFactory(datafile="./data/night_safari.json", frontend="action")
+    query_parser = QueryFactory(datafile="..\\data\\night_safari.json", frontend="action")
     app.run(debug=True, host='0.0.0.0', port=4300)

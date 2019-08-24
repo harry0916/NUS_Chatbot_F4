@@ -3,7 +3,7 @@ __author__ = 'Xu Kartmann'
 __date__ = '20/08/2019'
 
 from functools import wraps
-MUTE_LOGGER = False
+MUTE_LOGGER = True
 USE_SYNONYMS = True
 from nltk.corpus import wordnet
 import copy
