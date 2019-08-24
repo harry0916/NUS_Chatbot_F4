@@ -126,8 +126,6 @@ class NlpModel(object):
     def response(self,user_response):
         robo_response = ''
         self.sent_tokens.append(user_response)
-        print(self.sent_tokens)
-
         TfidfVec = TfidfVectorizer(tokenizer=self.LemNormalize, stop_words='english')
         tfidf = TfidfVec.fit_transform(self.sent_tokens)
         vals = cosine_similarity(tfidf[-1], tfidf)

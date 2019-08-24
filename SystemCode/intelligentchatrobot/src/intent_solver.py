@@ -395,6 +395,18 @@ class QueryFactory:
 
     @logger
     def parse(self):
+        if self.params["NivigateKeyword"]:
+            print("navigate intent")
+            return self.card_fmt.basic_card_formatter(image_url=self.map_url_converter(self.params["address"]),
+                                                      accessibilityText="Here is a direction from your location to the zoo.",
+                                                      formatted_text="Here is a direction from your location to the zoo.",
+                                                      card_title="Map result",
+                                                      textToSpeech="Here is a direction from your location to the zoo.",
+                                                      botton_title="View on map",
+                                                      botton_url=self.map_direction_converter(self.params["address"],
+                                                                                              self.data_dict.get(
+                                                                                                  'location').get(
+                                                                                                  'Address')))
         if not self.params or not self.params.get('QueryKeywords'):
             return ""
         if self.intent == "nightsafariIntentSolver":
@@ -414,17 +426,6 @@ class QueryFactory:
                             if isinstance(ret, str):
                                 return {"fulfillmentText": method(kw)}
                             return method(kw)
-            if self.params["NivigateKeyword"]:
-                return self.card_fmt.basic_card_formatter(image_url=self.map_url_converter(self.params["address"]),
-                                                          accessibilityText="Here is a direction from your location to the zoo.",
-                                                          formatted_text="Here is a direction from your location to the zoo.",
-                                                          card_title="Map result",
-                                                          textToSpeech="Here is a direction from your location to the zoo.",
-                                                          botton_title="View on map",
-                                                          botton_url=self.map_direction_converter(self.params["address"],
-                                                                                                  self.data_dict.get(
-                                                                                                      'location').get(
-                                                                                                      'Address')))
             return ""
 
     @logger
