@@ -61,6 +61,7 @@ def print_timestamp():
 if __name__ == "__main__":
     nlp = NlpModel()
     nlp.response("") #to speed up sequence call
-    query = QueryFactory()
+    safari_file_path = os.path.dirname(os.path.abspath(__file__)) +"/../data/night_safari.json"
+    query = QueryFactory(safari_file_path)
     print('server start')
     app.run(debug=True, host="localhost", port=8080)

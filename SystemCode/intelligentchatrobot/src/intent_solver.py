@@ -340,12 +340,12 @@ class QueryFactory:
                     if self.params.get(domain):
                         ret = method(kw)
                         if isinstance(ret, str):
-                            return {"fulfillmentText": method(kw)}
+                            return method(kw)
                         return method(kw)
                 for subdomain, method in self.subdomain2Method.items():
                     if self.params.get(subdomain):
                         ret = method(kw)
                         if isinstance(ret, str):
-                            return {"fulfillmentText": method(kw)}
+                            return method(kw)
                         return method(kw)
         return ""
