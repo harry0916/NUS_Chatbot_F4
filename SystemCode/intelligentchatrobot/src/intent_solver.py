@@ -414,11 +414,18 @@ class QueryFactory:
                             if isinstance(ret, str):
                                 return {"fulfillmentText": method(kw)}
                             return method(kw)
+            if self.params["NivigateKeyword"]:
+                return self.card_fmt.basic_card_formatter(image_url=self.map_url_converter(self.params["address"]),
+                                                          accessibilityText="Here is a direction from your location to the zoo.",
+                                                          formatted_text="Here is a direction from your location to the zoo.",
+                                                          card_title="Map result",
+                                                          textToSpeech="Here is a direction from your location to the zoo.",
+                                                          botton_title="View on map",
+                                                          botton_url=self.map_direction_converter(self.params["address"],
+                                                                                                  self.data_dict.get(
+                                                                                                      'location').get(
+                                                                                                      'Address')))
             return ""
-        elif self.intent == "Navigate" and sel:
-            return self.card_fmt.basic_card_formatter(image_url=self.map_url_converter(self.params["address"]),
-                                                      accessibilityText="Here is a direction from your location to the zoo.",
-                                                      formatted_text="Here is a direction from your location to the zoo.")
 
     @logger
     def map_url_converter(self, address: str):
