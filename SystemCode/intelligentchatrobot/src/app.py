@@ -5,6 +5,7 @@ __date__ = '20/08/2019'
 from flask import Flask, request, make_response, jsonify
 from intent_solver import QueryFactory
 from nlpmodel import NlpModel
+from utils import isScreen_output_capable
 
 app = Flask(__name__)
 
@@ -12,6 +13,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def web_hook():
     req = request.get_json(force=True)
+    query_parser.frontend = "action" if isScreen_output_capable(req) else "default"
 
     response = {"fulfillmentText": "Sorry, I don't understand that."}
     if req["queryResult"]["queryText"] == "GOOGLE_ASSISTANT_WELCOME":
@@ -36,5 +38,5 @@ def web_hook():
 
 if __name__ == '__main__':
     nlp = NlpModel()
-    query_parser = QueryFactory(datafile="..\\data\\night_safari.json", frontend="action")
+    query_parser = QueryFactory(datafile="..\\data\\night_safari.json")
     app.run(debug=True, host='0.0.0.0', port=4300)

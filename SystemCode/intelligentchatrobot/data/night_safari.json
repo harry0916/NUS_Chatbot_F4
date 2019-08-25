@@ -192,8 +192,10 @@
         "diet": "Both arboreal and terrestrial prey",
         "Habitat": "Primary tropical forest",
         "Range": "From the rainforests of Indonesia",
-        "info": [
-        ]
+        "info": [{
+            "name": "Unique among wild cats",
+            "content": "These cats are skilled climbers and can climb down a tree headfirst like a squirrel. Gripping on with their large paws and sharp claws, they're able to climb upside down underneath tree branches. They can even hang onto branches with just their hind feet! Clouded leopards have the longest canine teeth relative to head and body size of any wild cat. Like the sabre-toothed cat, their jaws have a wide gape of 100 degrees. Modern lions have a gape of only 65 degrees"
+          }]
       },
       {
         "img": "https://www.wrs.com.sg/content/dam/wrs/night-safari/animals/signpost/1x1/common-palm-civet-720x720px.jpg",

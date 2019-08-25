@@ -229,5 +229,11 @@ class Payload_formater:
             t["payload"]["google"]["richResponse"]["items"][0]["simpleResponse"]["textToSpeech"] = textToSpeech
             return t
         else:
-            return self.basic_card_formatter(item_img_urls[0], item_img_titles[0], item_descs[0], list_title, "",
+            return self.basic_card_formatter(item_img_urls[0], item_img_titles[0], item_descs[0], item_titles[0], "",
                                              textToSpeech, botton_title=item_img_titles[0], botton_url=item_urls[0])
+
+@logger
+def isScreen_output_capable(req: dict):
+    return "surface" in req.get("originalDetectIntentRequest").get("payload").keys() and \
+        "actions.capability.SCREEN_OUTPUT" in \
+        [cap["name"] for cap in req.get("originalDetectIntentRequest").get("payload").get("surface").get("capabilities")]

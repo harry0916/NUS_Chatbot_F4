@@ -11,7 +11,7 @@ from utils import *
 class QueryFactory:
 
     @logger
-    def __init__(self, datafile="./data/night_safari.json", frontend="default"):
+    def __init__(self, datafile="./data/night_safari.json"):
         self.data_dict = self._build_knowledge_base(datafile)
         self.lexicon = Lexicon(self.data_dict)
         self.params = None
@@ -35,9 +35,8 @@ class QueryFactory:
             "Accessibility": self.access_intent,
             "Admission": self.admission_intent
         }
-        self.frontend = frontend
-        if self.frontend == "action":
-            self.card_fmt = Payload_formater()
+        self.frontend = "default"
+        self.card_fmt = Payload_formater()
 
     def _build_knowledge_base(self, datafile: str):
         with open(datafile, 'rb') as f:
@@ -151,17 +150,17 @@ class QueryFactory:
         if myString("event") == myString(self.params.get('Event')):
             if self.frontend == "default":
                 desc = '\n\n'.join(
-                    tuple(f"\"{desc.get('name')}\"\n{desc.get('content')}." for desc in self.data_dict.get('event')))
+                    tuple(f"\"{desc.get('name')}\"\n{desc.get('content')}." for desc in self.data_dict.get('events')))
                 return f"Check out these events: \n{desc}"
             return self.card_fmt.list_card_formatter(list_title="Check out these events:",
                                                      textToSpeech="Check out these events",
                                                      item_titles=list(self.lexicon.event.keys()),
                                                      item_descs=[info.get("content") for info in
                                                                  self.lexicon.event.values()],
-                                                     item_img_urls=[info.get("image") for info in
+                                                     item_img_urls=[info.get("img") for info in
                                                                     self.lexicon.event.values()],
                                                      item_img_titles=list(self.lexicon.event.keys()),
-                                                     item_urls=[""] * len(self.lexicon.event.keys()))
+                                                     item_urls=[info.get("url") for info in self.lexicon.event.values()])
         else:
             return ""
 
@@ -186,7 +185,9 @@ class QueryFactory:
         if myString("animal") == myString(self.params.get('Animal')):
             if self.frontend == "default":
                 desc = '\n\n'.join(
-                    tuple(f"{zone.get('name')}\n{zone.get('info')}" for zone in self.data_dict.get('animals')))
+                    tuple(f"{zone.get('name')}\n"
+                          f"{zone.get('info')[0].get('name')}\n"
+                          f"{zone.get('info')[0].get('content')}" for zone in self.data_dict.get('animals')))
                 return f"Learn about these animals:\n{desc}."
             return self.card_fmt.list_card_formatter(list_title="Learn about these animals:",
                                                      textToSpeech="Learn about these animals",
@@ -396,12 +397,12 @@ class QueryFactory:
     @logger
     def parse(self):
         if self.params["NivigateKeyword"]:
-            print("navigate intent")
-            return self.card_fmt.basic_card_formatter(image_url=self.map_url_converter(self.params["address"]),
-                                                      accessibilityText="Here is a direction from your location to the zoo.",
-                                                      formatted_text="Here is a direction from your location to the zoo.",
+            loc_name = self.params["address"] if self.params["address"] else "your location"
+            return self.card_fmt.basic_card_formatter(image_url=self.data_dict["map"],
+                                                      accessibilityText=f"Here is a direction from {loc_name} to the zoo.",
+                                                      formatted_text=f"Here is a direction from {loc_name} to the zoo.",
                                                       card_title="Map result",
-                                                      textToSpeech="Here is a direction from your location to the zoo.",
+                                                      textToSpeech=f"Here is a direction from {loc_name} to the zoo.",
                                                       botton_title="View on map",
                                                       botton_url=self.map_direction_converter(self.params["address"],
                                                                                               self.data_dict.get(
@@ -429,16 +430,9 @@ class QueryFactory:
             return ""
 
     @logger
-    def map_url_converter(self, address: str):
-        address.replace(" ", "+")
-        address.replace(",", "%2C")
-        return f"https://www.google.com/maps/search/?api=1&query={address}"
-
-    @logger
     def map_direction_converter(self, origin: str, destination: str):
         origin.replace(" ", "+")
         origin.replace(",", "%2C")
         destination.replace(" ", "+")
         destination.replace(",", "%2C")
         return f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}"
-
