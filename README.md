@@ -5,7 +5,7 @@
 
 ## SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT
 Currently, there are no chat bots embedded in existing Singapore Zoo websites. Singapore Zoo has five main part. In each part, it has many kinds of zones, activities and animals. There is a large range of information only in Night Safari part.  Browsing through the many webpages of these activities to find out and compare various pieces of information would be a tedious and cumbersome process.
-This project designs and develops a search-based chatbot system through Dialogflow, which helps Singapore Zoo to handle general queries about its animals and activities. 
+This project designs and develops a smart chatbot system using Dialogflow and NLTK, which helps Singapore Zoo to handle general queries about its animals and activities. 
 
 ---
 
