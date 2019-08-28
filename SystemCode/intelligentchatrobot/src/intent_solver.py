@@ -6,16 +6,16 @@ import json
 from utils import *
 
 # TODO: add google map snapshot when asked location of park
-# TODO: replace all [""] of dict into get method right before releasing the code
 
 
 class QueryFactory:
 
     @logger
-    def __init__(self, datafile="../data/night_safari.json", frontend="default"):
+    def __init__(self, datafile="./data/night_safari.json"):
         self.data_dict = self._build_knowledge_base(datafile)
         self.lexicon = Lexicon(self.data_dict)
         self.params = None
+        self.intent = None
 
         self.kws = ["what", "when", "how much", "where", "bring"]
         self.subdomain2Method = {
@@ -35,9 +35,8 @@ class QueryFactory:
             "Accessibility": self.access_intent,
             "Admission": self.admission_intent
         }
-        self.frontend = frontend
-        if self.frontend == "action":
-            self.card_fmt = Payload_formater()
+        self.frontend = "default"
+        self.card_fmt = Payload_formater()
 
     def _build_knowledge_base(self, datafile: str):
         with open(datafile, 'rb') as f:
@@ -45,8 +44,9 @@ class QueryFactory:
         return data_dict.get('Night Safari')
 
     @logger
-    def order(self, params: dict):
+    def order(self, params: dict, intent: str):
         self.params = params
+        self.intent = intent
 
     @logger
     def admission_intent(self, query_kw):
@@ -64,44 +64,33 @@ class QueryFactory:
                        f"; Closing: {self.data_dict.get('time').get('Closing Hours')}" \
                        f"; Admission time slots: {self.data_dict.get('time').get('Admission time slots')}" \
                        f"; Last entry: {self.data_dict.get('time').get('Last entry')}."
-        elif query_kw == "what":
-            return self.data_dict.get("description")
-        elif query_kw == "where":
-            return f"Our Night Safari Area is located at {self.data_dict.get('location').get('Address')}.\n" \
-                   f"Check out this park map :)"
-        elif query_kw == "how much":
-            for group_name, info in self.lexicon.pricegroup.items():
-                if myString(group_name) == myString(self.params.get("Price-group")):
-                    return f"Admission rate for {group_name}: {info}. \n Beyond that, ONLINE orders enjoy " \
-                           f"{self.data_dict.get('ticket').get('Online discount')} off. " \
-                           f"{self.data_dict.get('ticket').get('tips')}"
-            return "Admission rates: \n" + \
-                   "\n".join(tuple([f"{group_name}: ${info}" for group_name, info in self.lexicon.pricegroup.items()]))
-        elif query_kw == "bring":
-            return f"Please bring your {self.data_dict.get('Admission rates').get('bring')} is you like."
 
-    @logger
-    def admission_intent_card(self, query_kw):
-        if query_kw == "when" or self.params.get("TimeBoundary"):
-            if myString("open") == myString(self.params.get("TimeBoundary")):
-                return f"Night Safari opens at {self.data_dict.get('time').get('Opening Hours')}."
-            elif myString("close") == myString(self.params.get("TimeBoundary")):
-                return f"Night Safari closes at {self.data_dict.get('time').get('Closing Hours')}."
-            elif myString("last entry") == myString(self.params.get("TimeBoundary")):
-                return f"The last entry of Night Safari is {self.data_dict.get('time').get('Last entry')}."
-            elif myString("time slot") == myString(self.params.get("TimeBoundary")):
-                return f"The time slot of Night Safari is {self.data_dict.get('time').get('Admission time slots')}."
-            else:
-                return f"Opening: {self.data_dict.get('time').get('Opening Hours')}.\n" \
-                       f"; Closing: {self.data_dict.get('time').get('Closing Hours')}.\n" \
-                       f"; Admission time slots: {self.data_dict.get('time').get('Admission time slots')}.\n" \
-                       f"; Last entry: {self.data_dict.get('time').get('Last entry')}."
         elif query_kw == "what":
-            return self.data_dict.get("description")
-        elif query_kw == "where":
+            if self.frontend == "default":
+                return self.data_dict.get("description") + "."
+            return self.card_fmt.basic_card_formatter(image_url=self.data_dict["img"],
+                                                      accessibilityText="Description of night safari",
+                                                      formatted_text=self.data_dict.get("description"),
+                                                      card_title="Night Safari",
+                                                      textToSpeech="Here is the description of night safari",
+                                                      botton_title="Homepage",
+                                                      botton_url=self.data_dict["url"])
 
-            return f"Our Night Safari Area is located at {self.data_dict.get('location').get('Address')}.\n" \
-                   f"Check out this park map :)"
+        elif query_kw == "where":
+            if self.frontend == "default":
+                return f"Our Night Safari Area is located at {self.data_dict.get('location').get('Address')}."
+            return self.card_fmt.basic_card_formatter(image_url=self.data_dict["map"],
+                                                      accessibilityText="The map of night safari",
+                                                      formatted_text=f"Our Night Safari Area is located at "
+                                                                     f"{self.data_dict.get('location').get('Address')}",
+                                                      card_title="This is our address:",
+                                                      card_subtitle=self.data_dict.get('location').get('Address'),
+                                                      textToSpeech=f"This is our address: "
+                                                                   f"{self.data_dict.get('location').get('Address')}",
+                                                      botton_title="View on google map",
+                                                      botton_url=self.map_url_converter(self.data_dict.get('location').
+                                                                                        get('Address')))
+
         elif query_kw == "how much":
             for group_name, info in self.lexicon.pricegroup.items():
                 if myString(group_name) == myString(self.params.get("Price-group")):
@@ -127,13 +116,16 @@ class QueryFactory:
             if self.frontend == "default":
                 descs= '\n\n'.join(tuple(f"\"{program.get('name')}\"\n{program.get('info')}." for program in self.data_dict.get('program')))
                 return f"Check out these programmes:\n{descs}"
-            elif self.frontend == "action":
-                return self.card_fmt.list_card_formatter(list_title="Check out these programmes",
-                                                         textToSpeech="Check out these programmes:",
-                                                         item_titles=list(self.lexicon.programm.keys()),
-                                                         item_descs=[info.get("info") for info in self.lexicon.programm.values()],
-                                                         item_img_urls=[info.get("image") for info in self.lexicon.programm.values()]
-                                                         )
+            return self.card_fmt.list_card_formatter(list_title="Check out these programmes:",
+                                                     textToSpeech="Check out these programmes",
+                                                     item_titles=list(self.lexicon.programm.keys()),
+                                                     item_descs=[info.get("info") for info in
+                                                                 self.lexicon.programm.values()],
+                                                     item_img_urls=[info.get("image") for info in
+                                                                    self.lexicon.programm.values()],
+                                                     item_img_titles=list(self.lexicon.programm.keys()),
+                                                     item_urls=[info.get("url") for info in
+                                                                self.lexicon.programm.values()])
         else:
             return ""
 
@@ -147,7 +139,7 @@ class QueryFactory:
                     return f"{self.params.get('Event')} don't have a price tag, which means it's free!"
                 elif query_kw == "when":
                     return f"{self.params.get('Event')} is going to be hold on {info.get('date')}" + \
-                           " at {info.get('time')}." if "time" in info.keys() else "."
+                           f" at {info.get('time')}." if "time" in info.keys() else "."
                 elif query_kw == "where":
                     return f"The venue of {self.params.get('Event')} will be at {info.get('position')}"
                 elif query_kw == "bring":
@@ -156,9 +148,19 @@ class QueryFactory:
                 else:
                     return ""
         if myString("event") == myString(self.params.get('Event')):
-            desc = '\n\n'.join(
-                tuple(f"\"{desc.get('name')}\"\n{desc.get('content')}." for desc in self.data_dict.get('event')))
-            return f"Check out these events: {desc}"
+            if self.frontend == "default":
+                desc = '\n\n'.join(
+                    tuple(f"\"{desc.get('name')}\"\n{desc.get('content')}." for desc in self.data_dict.get('events')))
+                return f"Check out these events: \n{desc}"
+            return self.card_fmt.list_card_formatter(list_title="Check out these events:",
+                                                     textToSpeech="Check out these events",
+                                                     item_titles=list(self.lexicon.event.keys()),
+                                                     item_descs=[info.get("content") for info in
+                                                                 self.lexicon.event.values()],
+                                                     item_img_urls=[info.get("img") for info in
+                                                                    self.lexicon.event.values()],
+                                                     item_img_titles=list(self.lexicon.event.keys()),
+                                                     item_urls=[info.get("url") for info in self.lexicon.event.values()])
         else:
             return ""
 
@@ -181,9 +183,22 @@ class QueryFactory:
                 else:
                     return f"Sorry, we don't know about that for {self.params.get('Animal')}."
         if myString("animal") == myString(self.params.get('Animal')):
-            desc = desc = '\n\n'.join(
-                tuple(f"{zone.get('name')}\n{zone.get('info')}." for zone in self.data_dict.get('animals')))
-            return f"Learn about this animal: {self.data_dict.get('animals')[0].get('name')}: {desc}."
+            if self.frontend == "default":
+                desc = '\n\n'.join(
+                    tuple(f"{zone.get('name')}\n"
+                          f"{zone.get('info')[0].get('name')}\n"
+                          f"{zone.get('info')[0].get('content')}" for zone in self.data_dict.get('animals')))
+                return f"Learn about these animals:\n{desc}."
+            return self.card_fmt.list_card_formatter(list_title="Learn about these animals:",
+                                                     textToSpeech="Learn about these animals",
+                                                     item_titles=list(self.lexicon.animal.keys()),
+                                                     item_descs=["Range: " + info.get('Range') for info in
+                                                                 self.data_dict.get('animals')],
+                                                     item_img_urls=[info.get("img") for info in
+                                                                    self.lexicon.animal.values()],
+                                                     item_img_titles=list(self.lexicon.animal.keys()),
+                                                     item_urls=[info.get("url") for info in
+                                                                self.lexicon.animal.values()])
         else:
             return ""
 
@@ -196,9 +211,17 @@ class QueryFactory:
                 else:
                     return f"Sorry, we don't know about that for {self.params.get('Zone')}."
         if myString("zone") == myString(self.params.get('Zone')):
-            desc = '\n\n'.join(
-                tuple(f"{zone.get('name')}\n{zone.get('info')}." for zone in self.data_dict.get('zone')))
-            return f"Check out these zones: {desc}"
+            if self.frontend == "default":
+                desc = '\n\n'.join(
+                    tuple(f"{zone.get('name')}\n{zone.get('info')}." for zone in self.data_dict.get('zone')))
+                return f"Check out these zones: \n{desc}"
+            return self.card_fmt.list_card_formatter(item_titles=list(self.lexicon.zone.keys()),
+                                                     item_urls=[info.get("url") for info in self.lexicon.zone.values()],
+                                                     item_descs=[info.get("info") for info in self.lexicon.zone.values()],
+                                                     item_img_titles=list(self.lexicon.zone.keys()),
+                                                     item_img_urls=[info.get("img") for info in self.lexicon.zone.values()],
+                                                     list_title="Check out these zones:",
+                                                     textToSpeech="Check out these zones")
         else:
             return ""
 
@@ -226,13 +249,33 @@ class QueryFactory:
                 else:
                     return f"Sorry, we don't know about that for {self.params.get('DineandShop')}."
         if myString("gift shop") == myString(self.params.get('DineandShop')):
-            desc = '\n\n'.join(
-                tuple(f"{shop.get('name')}\n{shop.get('info')}." for shop in self.data_dict.get('DiningandShop').get('gift')))
-            return f"Check out these shops: {desc}"
+            if self.frontend == "default":
+                desc = '\n\n'.join(
+                    tuple(f"{shop.get('name')}\n{shop.get('info')}." for shop in self.data_dict.get('DiningandShop').get('gift')))
+                return f"Check out these shops: \n{desc}"
+            return self.card_fmt.list_card_formatter(item_titles=list(self.lexicon.shop.keys()),
+                                                     item_descs=[info.get("info") for info in
+                                                                 self.lexicon.shop.values()],
+                                                     item_urls=[info.get("url") for info in self.lexicon.shop.values()],
+                                                     item_img_titles=list(self.lexicon.shop.keys()),
+                                                     item_img_urls=[info.get("img") for info in
+                                                                    self.lexicon.shop.values()],
+                                                     list_title="Check out these shops:",
+                                                     textToSpeech="Check out these shops")
         elif myString("Restaurant") == myString(self.params.get('DineandShop')):
-            desc = '\n\n'.join(
-                tuple(f"{rest.get('name')}\n{rest.get('info')}." for rest in self.data_dict.get('DiningandShop').get('Restaurant')))
-            return f"Check out these restaurants: {desc}"
+            if self.frontend == "default":
+                desc = '\n\n'.join(
+                    tuple(f"{rest.get('name')}\n{rest.get('info')}." for rest in self.data_dict.get('DiningandShop').get('Restaurant')))
+                return f"Check out these restaurants: {desc}"
+            return self.card_fmt.list_card_formatter(item_titles=list(self.lexicon.dine.keys()),
+                                                     item_descs=[info.get("info") for info in
+                                                                 self.lexicon.dine.values()],
+                                                     item_urls=[info.get("url") for info in self.lexicon.dine.values()],
+                                                     item_img_titles=list(self.lexicon.dine.keys()),
+                                                     item_img_urls=[info.get("img") for info in
+                                                                    self.lexicon.dine.values()],
+                                                     list_title="Check out these restaurants:",
+                                                     textToSpeech="Check out these restaurants")
         else:
             return ""
 
@@ -251,9 +294,20 @@ class QueryFactory:
                 else:
                     return f"Sorry, we don't know about that for {self.params.get('Membership')}."
         if myString("promotion") == myString(self.params.get('Promotion')):
-            listing = '\n\n'.join(
-                tuple(f"\"{p.get('name')}\"\n{p.get('info').get('ticket')}." for p in self.data_dict.get('promotions')))
-            return f"Check out these promotion: {listing}"
+            if self.frontend == "default":
+                listing = '\n\n'.join(
+                    tuple(f"\"{p.get('name')}\"\n{p.get('info').get('ticket')}." for p in self.data_dict.get('promotions')))
+                return f"Check out these promotions: {listing}"
+            return self.card_fmt.list_card_formatter(item_titles=list(self.lexicon.promotion.keys()),
+                                                     item_descs=[info.get("info").get("ticket") for info in
+                                                                 self.lexicon.promotion.values()],
+                                                     item_urls=[info.get("url") for info in
+                                                                self.lexicon.promotion.values()],
+                                                     item_img_urls=[info.get("img") for info in
+                                                                    self.lexicon.promotion.values()],
+                                                     item_img_titles=list(self.lexicon.promotion.keys()),
+                                                     list_title="Check out these promotions:",
+                                                     textToSpeech="Check out these promotions")
         else:
             return ""
 
@@ -267,7 +321,7 @@ class QueryFactory:
                 if query_kw == "what":
                     return f"{act}: {info.get('content')}."
                 elif query_kw == "when":
-                    return info.get('time') + '.'
+                    return f"Time information about {self.params.get('Activities')}: \n{info.get('time')}."
                 elif query_kw == "where" and "position" in info.keys():
                     return f"The {act} happens at {info.get('position')}."
                 elif query_kw == "how much" and 'price' in info.keys():
@@ -278,16 +332,18 @@ class QueryFactory:
             if self.frontend == "default":
                 descs= '\n\n'.join(
                     tuple(f"\"{act.get('name')}\"\n{act.get('content')}." for act in self.data_dict.get('activities')))
-                return f"Check out these programmes:\n{descs}"
+                return f"Check out these activities:\n{descs}"
             elif self.frontend == "action":
                 return self.card_fmt.list_card_formatter(list_title="Check out these activities",
                                                          textToSpeech="Check out these activities:",
                                                          item_titles=list(self.lexicon.activities.keys()),
-                                                         item_descs=[info.get("content") for info in self.lexicon.activities.values()],
-                                                         item_img_urls=[info.get("img") for info in self.lexicon.activities.values()],
+                                                         item_descs=[info.get("content") for info in
+                                                                     self.lexicon.activities.values()],
+                                                         item_img_urls=[info.get("img") for info in
+                                                                        self.lexicon.activities.values()],
                                                          item_img_titles=list(self.lexicon.activities.keys()),
-                                                         item_urls=[info.get("url") for info in self.lexicon.activities.values()]
-                                                         )
+                                                         item_urls=[info.get("url") for info in
+                                                                    self.lexicon.activities.values()])
         else:
             return ""
 
@@ -303,9 +359,19 @@ class QueryFactory:
                 else:
                     return f"Sorry, we don't know about that for {self.params.get('Show')}."
         if myString("shows") == myString(self.params.get('Show')):
-            desc = '\n\n'.join(
-                tuple(f"\"{show.get('name')}\"\nSchedule:{show.get('time')}." for show in self.data_dict.get('show')))
-            return f"Check out these shows: {desc}"
+            if self.frontend == "default":
+                desc = '\n\n'.join(
+                    tuple(f"\"{show.get('name')}\"\nSchedule:{show.get('time')}." for show in self.data_dict.get('show')))
+                return f"Check out these shows: {desc}"
+            return self.card_fmt.list_card_formatter(list_title="Check out these shows:",
+                                                     textToSpeech="Check out these shows",
+                                                     item_titles=list(self.lexicon.show.keys()),
+                                                     item_descs=[f"Schedule: {info.get('time')}\n"
+                                                                 f"Duration:{info.get('duration')}" for info in
+                                                                 self.lexicon.show.values()],
+                                                     item_img_urls=[info["img"] for info in self.lexicon.show.values()],
+                                                     item_img_titles=list(self.lexicon.show.keys()),
+                                                     item_urls=[info["url"] for info in self.lexicon.show.values()])
         else:
             return ""
 
@@ -322,30 +388,51 @@ class QueryFactory:
                 else:
                     return f"Sorry, we don't know about that for {self.params.get('Accessibility')}."
         if myString("Accessibility") == myString(self.params.get('Accessibility')):
-            desc = '\n\n'.join(
+            desc = '\n'.join(
                 tuple(f"{name}: ${price.get('price')}" for name, price in self.data_dict.get('Accessibility').items()))
-            return f"These accessibility facilities are available: {desc}."
+            return f"These accessibility facilities are available: \n{desc}."
         else:
             return ""
 
     @logger
     def parse(self):
+        if self.params["NivigateKeyword"]:
+            loc_name = self.params["address"] if self.params["address"] else "your location"
+            return self.card_fmt.basic_card_formatter(image_url=self.data_dict["map"],
+                                                      accessibilityText=f"Here is a direction from {loc_name} to the zoo.",
+                                                      formatted_text=f"Here is a direction from {loc_name} to the zoo.",
+                                                      card_title="Map result",
+                                                      textToSpeech=f"Here is a direction from {loc_name} to the zoo.",
+                                                      botton_title="View on map",
+                                                      botton_url=self.map_direction_converter(self.params["address"],
+                                                                                              self.data_dict.get(
+                                                                                                  'location').get(
+                                                                                                  'Address')))
         if not self.params or not self.params.get('QueryKeywords'):
             return ""
-        for kw in self.kws:
-            if len(self.params.get("QueryKeywords")) > 1 and "what" in self.params.get("QueryKeywords"):
-                self.params.get("QueryKeywords").remove("what")
-            if myString(kw) == myString(self.params.get("QueryKeywords")[0]):
-                for domain, method in self.domain2Method.items():
-                    if self.params.get(domain):
-                        ret = method(kw)
-                        if isinstance(ret, str):
+        if self.intent == "nightsafariIntentSolver":
+            for kw in self.kws:
+                if len(self.params.get("QueryKeywords")) > 1 and "what" in self.params.get("QueryKeywords"):
+                    self.params.get("QueryKeywords").remove("what")
+                if myString(kw) == myString(self.params.get("QueryKeywords")[0]):
+                    for domain, method in self.domain2Method.items():
+                        if self.params.get(domain):
+                            ret = method(kw)
+                            if isinstance(ret, str):
+                                return {"fulfillmentText": method(kw)}
                             return method(kw)
-                        return method(kw)
-                for subdomain, method in self.subdomain2Method.items():
-                    if self.params.get(subdomain):
-                        ret = method(kw)
-                        if isinstance(ret, str):
+                    for subdomain, method in self.subdomain2Method.items():
+                        if self.params.get(subdomain):
+                            ret = method(kw)
+                            if isinstance(ret, str):
+                                return {"fulfillmentText": method(kw)}
                             return method(kw)
-                        return method(kw)
-        return ""
+            return ""
+
+    @logger
+    def map_direction_converter(self, origin: str, destination: str):
+        origin.replace(" ", "+")
+        origin.replace(",", "%2C")
+        destination.replace(" ", "+")
+        destination.replace(",", "%2C")
+        return f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}"

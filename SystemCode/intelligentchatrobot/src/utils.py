@@ -41,80 +41,80 @@ class Lexicon:
     @logger
     def _animal_lexicon(self):
         return {
-            animal["name"].lower(): {k: v for k, v in animal.items() if k != "name"}
-            for animal in self.base["animals"]
+            animal.get("name"): {k: v for k, v in animal.items() if k != "name"}
+            for animal in self.base.get("animals")
         }
 
     @logger
     def _chitchat_animal_lexicon(self):
         return {
-            act["name"].lower().split("Keepers' Chit-Chat ")[-1]: {k: v for k, v in act.items() if k != "name"}
-            for act in self.base["activities"]
+            act.get("name").split("Keepers' Chit-Chat ")[-1]: {k: v for k, v in act.items() if k != "name"}
+            for act in self.base.get("activities")
         }
 
     @logger
     def _zone_lexicon(self):
         return {
-            zone["name"].lower(): {k: v for k, v in zone.items() if k != "name"}
-            for zone in self.base["zone"]
+            zone.get("name"): {k: v for k, v in zone.items() if k != "name"}
+            for zone in self.base.get("zone")
         }
 
     @logger
     def _activities_lexicon(self):
         return {
-            act["name"].lower(): {k: v for k, v in act.items() if k != "name"}
-            for act in self.base["activities"]
+            act.get("name"): {k: v for k, v in act.items() if k != "name"}
+            for act in self.base.get("activities")
         }
 
     @logger
     def _event_lexicon(self):
         return {
-            event["name"].lower(): {k: v for k, v in event.items() if k != "name"}
-            for event in self.base["events"]
+            event.get("name"): {k: v for k, v in event.items() if k != "name"}
+            for event in self.base.get("events")
         }
 
     @logger
     def _show_lexicon(self):
         return {
-            show["name"].lower(): {k: v for k, v in show.items() if k != "name"}
-            for show in self.base["show"]
+            show.get("name"): {k: v for k, v in show.items() if k != "name"}
+            for show in self.base.get("show")
         }
 
     @logger
     def _dineandshop_lexicon(self):
         return {
-            dine["name"].lower(): {k: v for k, v in dine.items() if k != "name"}
-            for dine in self.base["DiningandShop"]["Restaurant"]
+            dine.get("name"): {k: v for k, v in dine.items() if k != "name"}
+            for dine in self.base.get("DiningandShop").get("Restaurant")
         }, {
-            shop["name"].lower(): {k: v for k, v in shop.items() if k != "name"}
-            for shop in self.base["DiningandShop"]["gift"]
+            shop.get("name"): {k: v for k, v in shop.items() if k != "name"}
+            for shop in self.base.get("DiningandShop").get("gift")
         }
 
     @logger
     def _pricegroup_lexicon(self):
         return {
-            k.lower(): v
-            for k, v in list(self.base["ticket"]["Admission ticket prices"].items()) +
-                        list(self.base["Admission rates"]["price"].items())
+            k: v
+            for k, v in list(self.base.get("ticket").get("Admission ticket prices").items()) +
+                        list(self.base.get("Admission rates").get("price").items())
         }
 
     @logger
     def _promotion_lexicon(self):
         return {
-            promotion["name"].lower(): {k: v for k, v in promotion.items() if k != "name"}
-            for promotion in self.base["promotions"]
+            promotion.get("name"): {k: v for k, v in promotion.items() if k != "name"}
+            for promotion in self.base.get("promotions")
         }
 
     @logger
     def _programm_lexicon(self):
         return {
-            prog["name"].lower(): {k: v for k, v in prog.items() if k != "name"}
-            for prog in self.base["program"]
+            prog.get("name"): {k: v for k, v in prog.items() if k != "name"}
+            for prog in self.base.get("program")
         }
 
     @logger
     def _accessibility_lexicon(self):
-        return self.base['Accessibility']
+        return self.base.get('Accessibility')
 
 class myString:
     def __init__(self, s: str):
@@ -180,18 +180,19 @@ class Payload_formater:
             }
         }
         self.basic_card_template = copy.deepcopy(self.action_template)
-        self.basic_card_template["payload"]["google"]["richResponse"]["items"].append(self.basic_card)
+        self.basic_card_template.get("payload").get("google").get("richResponse").get("items").append(self.basic_card)
         self.carousel_template = copy.deepcopy(self.action_template)
-        self.carousel_template["payload"]["google"]["richResponse"]["items"].append({
+        self.carousel_template.get("payload").get("google").get("richResponse").get("items").append({
             "carouselBrowse": {
                 "items": []
             }
         })
+        self.max_list = 10
 
     @logger
     def basic_card_formatter(self, image_url: str, accessibilityText: str="image", formatted_text: str="",
-                             card_title: str="Hi", card_subtitle: str="This is an empty card",
-                             textToSpeech: str="This is an empty card", botton_title: str="Botton", botton_url: str=""):
+                             card_title: str="Hi", card_subtitle: str="",
+                             textToSpeech: str="", botton_title: str="Botton", botton_url: str=""):
         t = copy.deepcopy(self.basic_card_template)
         t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["title"] = card_title
         t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["subtitle"] = card_subtitle
@@ -199,23 +200,21 @@ class Payload_formater:
         t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["formattedText"] = formatted_text
         t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["image"]["url"] = image_url
         t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["image"]["accessibilityText"] = accessibilityText
-        t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["bottons"][0]["title"] = botton_title
-        t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["bottons"][0]["openUrlAction"]["url"] = botton_url
+        t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["buttons"][0]["title"] = botton_title
+        t["payload"]["google"]["richResponse"]["items"][1]["basicCard"]["buttons"][0]["openUrlAction"]["url"] = botton_url
         return t
 
     @logger
     def list_card_formatter(self, item_titles: list, item_descs: list, item_img_urls: list, item_img_titles: list,
-                            item_urls=[], list_title: str="Check out these items",
-                            textToSpeech: str = "This is an empty card",):
+                            item_urls=[], list_title: str="Check out these items", textToSpeech: str=""):
         assert len(item_descs) == len(item_img_titles) == len(item_img_urls) == len(item_titles) == len(item_urls), \
             f"List length must the same, but received len(item_descs)={len(item_descs)}, " \
             f"len(item_img_titles)={len(item_img_titles)}, len(item_img_urls)={len(item_img_urls)}, " \
             f"len(item_titles)={len(item_titles)}, len(item_urls)={len(item_urls)}."
         if len(item_urls) > 1:
             t = copy.deepcopy(self.carousel_template)
-            for i in range(len(item_titles)):
+            for i in range(min(len(item_titles), 10)):
                 item = {
-
                     "description": item_descs[i],
                     "image": {
                         "url": item_img_urls[i],
@@ -226,10 +225,15 @@ class Payload_formater:
                         "url": item_urls[i]
                     },
                 }
-                t["payload"]["google"]["systemIntent"]["data"]["listSelect"]["items"].append(item)
-            t["payload"]["google"]["systemIntent"]["data"]["listSelect"]["title"] = list_title
+                t["payload"]["google"]["richResponse"]["items"][1]["carouselBrowse"]["items"].append(item)
             t["payload"]["google"]["richResponse"]["items"][0]["simpleResponse"]["textToSpeech"] = textToSpeech
             return t
         else:
-            return self.basic_card_formatter(item_img_urls[0], item_img_titles[0], item_descs[0], list_title, "",
+            return self.basic_card_formatter(item_img_urls[0], item_img_titles[0], item_descs[0], item_titles[0], "",
                                              textToSpeech, botton_title=item_img_titles[0], botton_url=item_urls[0])
+
+@logger
+def isScreen_output_capable(req: dict):
+    return "surface" in req.get("originalDetectIntentRequest").get("payload").keys() and \
+        "actions.capability.SCREEN_OUTPUT" in \
+        [cap["name"] for cap in req.get("originalDetectIntentRequest").get("payload").get("surface").get("capabilities")]

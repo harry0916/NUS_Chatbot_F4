@@ -1,67 +1,42 @@
-#!/usr/bin/env python
+# _*_ coding utf-8 _*_
+__author__ = 'Xu Kartmann'
+__date__ = '20/08/2019'
 
-from flask_assistant import request as req
-import requests
-from nlpmodel import NlpModel
+from flask import Flask, request, make_response, jsonify
 from intent_solver import QueryFactory
-import logging
-from flask import Flask
-from flask_assistant import Assistant, ask, tell, context_manager
+from nlpmodel import NlpModel
+from utils import isScreen_output_capable
 
-import warnings
-warnings.filterwarnings("ignore")
-
-project_id='zooq-a-laoaju'
 app = Flask(__name__)
-assist = Assistant(app, route='/', project_id = project_id)
-#logging.getLogger('flask_assistant').setLevel(logging.DEBUG)
 
 
-@assist.action('Default Fallback Intent')
-def safariFallbackQA():
-    user_query = req['queryResult']['queryText']
-    return tell(nlp.response(user_query))
+@app.route('/', methods=['POST'])
+def web_hook():
+    req = request.get_json(force=True)
+    query_parser.frontend = "action" if isScreen_output_capable(req) else "default"
 
-@assist.action('getUserAddr')
-def getUserAddr():
-    query.order(req['queryResult']['parameters'])
-    return tell(query.parse())
+    response = {"fulfillmentText": "Sorry, I don't understand that."}
+    if req["queryResult"]["queryText"] == "GOOGLE_ASSISTANT_WELCOME":
+        return make_response(jsonify({"fulfillmentText":
+                                          "Good day! Welcome to Night Safari. What can I do for you today?"}))
+    if req["queryResult"]["intent"]["displayName"] != "Default Fallback Intent":
+        query_parser.order(req["queryResult"]["parameters"], req["queryResult"]["intent"]["displayName"])
+        response = query_parser.parse()
 
-@assist.action('Navigate')
-def navigate():
-    query.order(req['queryResult']['parameters'])
-    return tell(query.parse())
-
-@assist.action('nightsafariIntentSolver')
-def nightsafariIntentSolver():
-    query.order(req['queryResult']['parameters'])
-    t = query.parse()
-    if isinstance(t, str) and t.strip() == '':
+    # FAQ intents
+    if req["queryResult"]["intent"]["displayName"] == "Default Fallback Intent" or (isinstance(response, str) and response == ""):
+        print("fallback")
         t = nlp.response(req['queryResult']['queryText']).split('\n')
-        print('mwzoutput:',t)
+        print('mwzoutput:', t)
         if len(t) > 1:
             t = t[1]
-        print('mwzoutputfinal:',t)
-    return tell(t)
+        print('mwzoutputfinal:', t)
+        response = {"fulfillmentText": t}
+
+    return make_response(jsonify(response))
 
 
-
-import time
-def print_timestamp():
-    ct = time.time()
-    local_time = time.localtime(ct)
-    data_head = time.strftime("%Y-%m-%d %H:%M:%S", local_time)
-    data_msecs = (ct - int(ct)) * 1000
-    time_stamp = "%s.%03d" % (data_head, data_msecs)
-    print(time_stamp)
-    return time_stamp
-
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     nlp = NlpModel()
-    nlp.response("") #to speed up sequence call
-    safari_file_path = os.path.dirname(os.path.abspath(__file__)) +"/../data/night_safari.json"
-    query = QueryFactory(safari_file_path)
-    print('server start')
-    app.run(debug=True, host="localhost", port=8080)
+    query_parser = QueryFactory(datafile="..\\data\\night_safari.json")
+    app.run(debug=True, host='0.0.0.0', port=4300)
