@@ -1,4 +1,8 @@
+#!/bin/bash
 conda create -n safari
 conda activate safari
-#/anaconda3/bin/pip install -r requirements.txt
-/anaconda3/bin/python3 src/app.py
+
+pip install -r requirements.txt
+python -m spacy download en_core_web_md
+
+cd src && python app.py
