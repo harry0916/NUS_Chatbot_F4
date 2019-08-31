@@ -6,6 +6,7 @@ from flask import Flask, request, make_response, jsonify
 from intent_solver import QueryFactory
 from nlpmodel import NlpModel
 from utils import isScreen_output_capable
+import os
 
 app = Flask(__name__)
 
@@ -38,5 +39,5 @@ def web_hook():
 
 if __name__ == '__main__':
     nlp = NlpModel()
-    query_parser = QueryFactory(datafile="..\\data\\night_safari.json")
+    query_parser = QueryFactory(os.path.abspath('../data/night_safari.json'))
     app.run(debug=True, host='0.0.0.0', port=4300)
