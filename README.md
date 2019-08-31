@@ -15,7 +15,7 @@ This project designs and develops a smart chatbot system using Dialogflow and NL
 | Official Full Name | Student ID   | Work Items (Who Did What)  |
 | :------------: | :------------: | :-------------------------: |
 |  Ma Weizhong       | A0198426R    |Lead the team, plan the process flow and architecture, arrange tasks.Do the nlp model, integrate the components and do case test |
-|  Xu Kaixin         | A0198419M    |Dialogflow configuration and build, backend intents and parameters matching programming, googe action & map URL api, project video, Windows setup.bat, User guide |
+|  Xu Kaixin         | A0198419M    |Dialogflow configuration and building, backend intents and parameters matching programming, Google action & Map URL api integration, Project Video, Windows setup.bat, User guide |
 |  Zhang zhilin      | A0198519L    |Web crawler,testing and bug fixing.Adding intents and entities |
 |  Yu Xiaoxi         | A0198461U    |Project report.Intent and Entity Define.Draft of project video |
 
