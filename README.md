@@ -28,8 +28,7 @@ This project designs and develops a smart chatbot system using Dialogflow and NL
 ---
 
 ## SECTION 5 : USER GUIDE
-[Refer to UserGuide.pdf: https://github.com/harry0916/NUS_Chatbot_F4/blob/master/UserGuide/UserGuide.pdf] (https://github.com/harry0916/NUS_Chatbot_F4/blob/master/UserGuide/UserGuide.pdf)
-
+[Refer to UserGuide.pdf: https://github.com/harry0916/NUS_Chatbot_F4/blob/master/UserGuide/UserGuide.pdf] 
 ---
 
 ## SECTION 6 : PROJECT REPORT / PAPER
