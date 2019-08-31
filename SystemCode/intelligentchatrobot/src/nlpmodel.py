@@ -17,7 +17,7 @@ class NlpModel(object):
         # SpaCy setup
         self.nlp = sp.load("en_core_web_md")
         # Env Variables
-        self.dir_path = os.path.dirname(os.path.abspath(__file__)) +"/../data/nightSafariFAQs.txt"
+        self.dir_path = os.path.abspath('../data/nightSafariFAQs.txt')
         with open(self.dir_path, 'r') as f:
             raw = f.read()
         # preprocessing
